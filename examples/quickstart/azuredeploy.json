@@ -5,7 +5,7 @@
     "templateBaseUrl": {
       "defaultValue": "https://raw.githubusercontent.com/oncledave01/f5-azure-arm-templates-v2/",
       "metadata": {
-        "description": "The publicly accessible URL where the linked ARM templates are located."
+        "description": "The publicly accessible URL where the linked ARM templates are located. Must be raw."
       },
       "type": "string"
     },
