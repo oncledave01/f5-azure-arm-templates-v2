@@ -3,7 +3,7 @@
   "contentVersion": "1.4.0.0",
   "parameters": {
     "templateBaseUrl": {
-      "defaultValue": "https://cdn.f5.com/product/cloudsolutions/",
+      "defaultValue": "https://raw.githubusercontent.com/oncledave01/f5-azure-arm-templates-v2/",
       "metadata": {
         "description": "The publicly accessible URL where the linked ARM templates are located."
       },
@@ -17,6 +17,7 @@
       "type": "string"
     },
     "uniqueString": {
+      "defaultValue": "rds",
       "metadata": {
         "description": "REQUIRED - A prefix that will be used to name template resources. Because some resources require globally unique names, we recommend using a unique value."
       },
@@ -37,6 +38,7 @@
       "type": "string"
     },
     "sshKey": {
+      "defaultValue": "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIA/Div8gIal8GiOQfidWMFlBlfsHGfE7O+RN9ic4TWYn david.rolin@gmail.com",
       "metadata": {
         "description": "REQUIRED - Supply the public key that will be used for SSH authentication to the BIG-IP and application virtual machines."
       },
@@ -69,19 +71,21 @@
       "type": "bool"
     },
     "restrictedSrcAddressMgmt": {
+      "defaultValue": "*",
       "metadata": {
         "description": "REQUIRED - When creating management security group, this field restricts management access to a specific network or address. Enter an IP address or address range in CIDR notation, or asterisk for all sources."
       },
       "type": "string"
     },
     "restrictedSrcAddressApp": {
+      "defaultValue": "*",
       "metadata": {
         "description": "REQUIRED - When creating application security group, this field restricts application access to a specific network or address. Enter an IP address or address range in CIDR notation, or asterisk for all sources."
       },
       "type": "string"
     },
     "bigIpRuntimeInitConfig": {
-      "defaultValue": "https://raw.githubusercontent.com/F5Networks/f5-azure-arm-templates-v2/v1.4.0.0/examples/quickstart/bigip-configurations/runtime-init-conf-3nic-payg.yaml",
+      "defaultValue": "https://raw.githubusercontent.com/oncledave01/f5-azure-arm-templates-v2/v1.4.0.0/examples/quickstart/bigip-configurations/runtime-init-conf-3nic-payg.yaml",
       "metadata": {
         "description": "Supply a URL to the bigip-runtime-init configuration file in YAML or JSON format, or an escaped JSON string to use for f5-bigip-runtime-init configuration."
       },
