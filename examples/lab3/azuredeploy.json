@@ -10,7 +10,7 @@
       "type": "string"
     },
     "artifactLocation": {
-      "defaultValue": "f5-azure-arm-templates-v2/v1.4.0.0/examples/",
+      "defaultValue": "main/examples/",
       "metadata": {
         "description": "The directory, relative to the templateBaseUrl, where the modules folder is located."
       },
@@ -38,7 +38,17 @@
       "type": "string"
     },
     "sshKey": {
-      "defaultValue": "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIA/Div8gIal8GiOQfidWMFlBlfsHGfE7O+RN9ic4TWYn david.rolin@gmail.com",
+      "defaultValue": "-----BEGIN RSA PUBLIC KEY-----
+MIIBigKCAYEAuU0nYCdYT7MvaZ8RZMFqeGQ0hRNArs838i1AhwRb+tRnjF8zQwos
+Z/VOBxsckzDjJyRE8SreDUxJWfNlzVxa6BViae3p6wFckZIAmuAT4pb0PvnKpDI5
+ro10aPPb2vkp0KbswtxG+J+xU7/ZWxI6k5Tuh/pqLqL30ieFBACZDo4W4y8xT28C
+Y8L6CdwScZYycMhnw7ocnFgqIzfcxec7+x4ad7Fi7a3NTVNTd8PovgmB2Dou5pGZ
+kEYYe8xPbktt1P8i7bZHxJ2bbJpf+pP0hv6hl/K6i51bTowpBq4ISn9FwEPnxDcA
+YaOVPMFHc2dgyHD0wZlz4zGaC4ZtidqgvxxA0CB5QG2h6s3PtBpEhQ9isiTiDq42
+1RK5BjtfgNzWZzffwt0ZQJ6TPmth8ZiMTWflPmH9keLKJkBnbaQ8XxRMo5MJQg+d
+EReCDsymloMy/XlNd/09de8WQ9Y9pCDwcUUroPoqSkYwybhoi7KDZXqWbSL9VBBQ
+AWzGlKL4//WfAgMBAAE=
+-----END RSA PUBLIC KEY-----",
       "metadata": {
         "description": "REQUIRED - Supply the public key that will be used for SSH authentication to the BIG-IP and application virtual machines."
       },
@@ -85,7 +95,7 @@
       "type": "string"
     },
     "bigIpRuntimeInitConfig": {
-      "defaultValue": "https://raw.githubusercontent.com/oncledave01/f5-azure-arm-templates-v2/v1.4.0.0/examples/quickstart/bigip-configurations/runtime-init-conf-3nic-payg.yaml",
+      "defaultValue": "https://raw.githubusercontent.com/oncledave01/f5-azure-arm-templates-v2/main/examples/quickstart/bigip-configurations/runtime-init-conf-3nic-payg.yaml",
       "metadata": {
         "description": "Supply a URL to the bigip-runtime-init configuration file in YAML or JSON format, or an escaped JSON string to use for f5-bigip-runtime-init configuration."
       },
