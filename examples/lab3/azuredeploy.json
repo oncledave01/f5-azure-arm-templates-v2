@@ -2,6 +2,13 @@
   "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentTemplate.json#",
   "contentVersion": "1.4.0.0",
   "parameters": {
+    "2ndAPPServer": {
+      "defaultValue": false,
+      "metadata": {
+        "description": "Second App Server in LAN"
+      },
+      "type": "bool"
+    },
     "templateBaseUrl": {
       "defaultValue": "https://raw.githubusercontent.com/oncledave01/f5-azure-arm-templates-v2/",
       "metadata": {
@@ -327,6 +334,56 @@
     },
     {
       "type": "Microsoft.Resources/deployments",
+      "condition": "[variables('provisionApp')]",
+      "apiVersion": "2021-04-01",
+      "condition": "[parameters('2ndAPPServer')]",
+      "name": "appTemplate2",
+      "dependsOn": [
+        "networkTemplate",
+        "dagTemplate"
+      ],
+      "properties": {
+        "mode": "Incremental",
+        "templateLink": {
+          "uri": "[concat(parameters('templateBaseUrl'), parameters('artifactLocation'), 'modules/application/application.json')]",
+          "contentVersion": "[variables('contentVersion')]"
+        },
+        "parameters": {
+          "adminUsername": {
+            "value": "[variables('adminUsername')]"
+          },
+          "sshKey": {
+            "value": "[parameters('sshKey')]"
+          },
+          "createAutoscaleGroup": {
+            "value": "[variables('createAutoscaleGroup')]"
+          },
+          "instanceName": {
+            "value": "[variables('appInstanceName')]"
+          },
+          "instanceType": {
+            "value": "[variables('appInstanceType')]"
+          },
+          "subnetId": {
+            "value": "[reference('networkTemplate').outputs.subnets.value[parameters('numNics')]]"
+          },
+          "nsgId": {
+            "value": "[if(equals(parameters('numNics'), 1), reference('dagTemplate').outputs.nsg0Id.value, reference('dagTemplate').outputs.nsg1Id.value)]"
+          },
+          "appContainerName": {
+            "value": "[parameters('appContainerName')]"
+          },
+          "cloudInitUrl": {
+            "value": "[variables('cloudInitUrl')]"
+          },
+          "tagValues": {
+            "value": "[parameters('tagValues')]"
+          }
+        }
+      }
+    },
+    {
+      "type": "Microsoft.Resources/deployments",
       "apiVersion": "2021-04-01",
       "condition": "[not(parameters('provisionPublicIp'))]",
       "name": "bastionTemplate",
@@ -545,6 +602,16 @@
       "condition": "[variables('provisionApp')]",
       "type": "string",
       "value": "[reference('appTemplate').outputs.vmName.value]"
+    },
+    "appPrivateIp2": {
+      "condition": "[variables('provisionApp')]",
+      "type": "string",
+      "value": "[if(parameters('2ndAPPServer'), reference('appTemplate2').outputs.appIp.value, 'None')]"
+    },
+    "appVmName2": {
+      "condition": "[variables('provisionApp')]",
+      "type": "string",
+       "value": "[if(parameters('2ndAPPServer'), reference('appTemplate2').outputs.vmName.value, 'None')]"
     }
   }
 }
