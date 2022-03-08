@@ -6,7 +6,7 @@
       "value": "f5devcentral/f5-demo-app:latest"
     },
     "artifactLocation": {
-      "value": "f5-azure-arm-templates-v2/v1.4.0.0/examples/"
+      "value": ""f5-azure-arm-templates-v2/main/examples/""
     },
     "bigIpImage": {
       "value": "f5-networks:f5-big-ip-best:f5-bigip-virtual-edition-25m-best-hourly:16.1.000000"
@@ -37,18 +37,18 @@
     },
     "tagValues": {
       "value": {
-        "application": "APP",
-        "cost": "COST",
-        "environment": "ENV",
-        "group": "GROUP",
-        "owner": "OWNER"
+        "application": "LAB",
+        "cost": "CONDORCET",
+        "environment": "LAB",
+        "group": "CONDORCET",
+        "owner": "STUDENT"
       }
     },
     "templateBaseUrl": {
-      "value": "https://cdn.f5.com/product/cloudsolutions/"
+      "value": "https://raw.githubusercontent.com/oncledave01/f5-azure-arm-templates-v2/"
     },
     "uniqueString": {
-      "value": ""
+      "value": "rds"
     },
     "useAvailabilityZones": {
       "value": false

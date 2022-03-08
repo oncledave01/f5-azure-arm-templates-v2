@@ -10,7 +10,7 @@
       "type": "string"
     },
     "artifactLocation": {
-      "defaultValue": "f5-azure-arm-templates-v2/main/examples/",
+      "defaultValue": "f5-azure-arm-templates-v2/v1.4.0.0/examples/",
       "metadata": {
         "description": "The directory, relative to the templateBaseUrl, where the modules folder is located."
       },
