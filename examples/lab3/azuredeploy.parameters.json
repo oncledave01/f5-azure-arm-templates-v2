@@ -33,7 +33,7 @@
       "value": ""
     },
     "sshKey": {
-      "value": ""
+      "value": "-----BEGIN RSA PUBLIC KEY-----MIIBigKCAYEAuU0nYCdYT7MvaZ8RZMFqeGQ0hRNArs838i1AhwRb+tRnjF8zQwosZ/VOBxsckzDjJyRE8SreDUxJWfNlzVxa6BViae3p6wFckZIAmuAT4pb0PvnKpDI5ro10aPPb2vkp0KbswtxG+J+xU7/ZWxI6k5Tuh/pqLqL30ieFBACZDo4W4y8xT28CY8L6CdwScZYycMhnw7ocnFgqIzfcxec7+x4ad7Fi7a3NTVNTd8PovgmB2Dou5pGZkEYYe8xPbktt1P8i7bZHxJ2bbJpf+pP0hv6hl/K6i51bTowpBq4ISn9FwEPnxDcAYaOVPMFHc2dgyHD0wZlz4zGaC4ZtidqgvxxA0CB5QG2h6s3PtBpEhQ9isiTiDq421RK5BjtfgNzWZzffwt0ZQJ6TPmth8ZiMTWflPmH9keLKJkBnbaQ8XxRMo5MJQg+dEReCDsymloMy/XlNd/09de8WQ9Y9pCDwcUUroPoqSkYwybhoi7KDZXqWbSL9VBBQAWzGlKL4//WfAgMBAAE=-----END RSA PUBLIC KEY-----"
     },
     "tagValues": {
       "value": {
