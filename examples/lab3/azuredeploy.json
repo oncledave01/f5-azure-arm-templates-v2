@@ -359,7 +359,7 @@
             "value": "[variables('createAutoscaleGroup')]"
           },
           "instanceName": {
-            "value": "[variables('appInstanceName')]"
+            "value": "[concat(variables('appInstanceName'), '02')]"
           },
           "instanceType": {
             "value": "[variables('appInstanceType')]"
