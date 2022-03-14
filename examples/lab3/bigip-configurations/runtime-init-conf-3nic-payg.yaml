@@ -12,8 +12,8 @@ runtime_parameters:
       environment: azure
       field: name
   - name: BIGIP_PASSWORD
-      type: static
-      value: sports-lionize-DOCTRINE1
+      type: string
+      value: 'sports-lionize-DOCTRINE1'
   - name: SELF_IP_EXTERNAL
     type: metadata
     metadataProvider:
