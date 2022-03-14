@@ -6,7 +6,7 @@
       "value": "azureuser"
     },
     "appContainerName": {
-      "value": "OWASP/SecurityShepherd:latest"
+      "value": "owasp/security-shepherd:latest"
     },
     "cloudInitUrl": {
       "value": ""

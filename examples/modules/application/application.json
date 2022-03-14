@@ -53,7 +53,7 @@
             "type":"string"
         },
         "appContainerName":{
-            "defaultValue":"OWASP/SecurityShepherd:latest",
+            "defaultValue":"owasp/security-shepherd:latest",
             "metadata":{
                 "description":"The docker container to use when deploying the example application."
             },

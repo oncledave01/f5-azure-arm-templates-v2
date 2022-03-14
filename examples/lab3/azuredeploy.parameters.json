@@ -3,7 +3,7 @@
   "contentVersion": "1.4.0.0",
   "parameters": {
     "appContainerName": {
-      "value": "OWASP/SecurityShepherd:latest"
+      "value": "owasp/security-shepherd:latest"
     },
     "artifactLocation": {
       "value": "main/examples/"
