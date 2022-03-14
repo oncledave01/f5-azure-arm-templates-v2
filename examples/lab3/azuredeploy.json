@@ -52,7 +52,7 @@
       "type": "string"
     },
     "appContainerName": {
-      "defaultValue": "f5devcentral/f5-demo-app:latest",
+      "defaultValue": "OWASP/SecurityShepherd:latest",
       "metadata": {
         "description": "The docker container to use when deploying the example application."
       },
