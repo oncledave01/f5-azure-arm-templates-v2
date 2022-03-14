@@ -150,7 +150,7 @@ extension_services:
               members:
                 - serverAddresses:
                     - 10.0.3.4
-                    - 10.0.3.5
+                      10.0.3.5
                   servicePort: 80
               monitors:
                 - http
