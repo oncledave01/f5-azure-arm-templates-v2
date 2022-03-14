@@ -6,7 +6,7 @@
       "value": "azureuser"
     },
     "appContainerName": {
-      "value": "f5devcentral/f5-demo-app:latest"
+      "value": "OWASP/SecurityShepherd:latest"
     },
     "cloudInitUrl": {
       "value": ""
