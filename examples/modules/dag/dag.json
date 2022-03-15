@@ -278,7 +278,7 @@
                 "name": "constructNsg2Array"
             }
         ],
-        "uniqueString": "[concat(toLower(parameters('uniqueString')), parameters('LabNumber'))]",
+        "uniqueString": "[toLower(parameters('uniqueString'))]",
         "emptyArray": [],
         "inboundNatPoolsArray": [
             {
