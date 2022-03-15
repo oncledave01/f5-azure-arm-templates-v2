@@ -3,7 +3,7 @@
   "contentVersion": "1.4.0.0",
   "parameters": {
     "appContainerName": {
-      "value": "owasp/security-shepherd:latest"
+      "value": "karthequian/gruyere:latest"
     },
     "artifactLocation": {
       "value": "main/examples/"

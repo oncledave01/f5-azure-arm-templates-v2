@@ -52,7 +52,7 @@
       "type": "string"
     },
     "appContainerName": {
-      "defaultValue": "owasp/security-shepherd:latest",
+      "defaultValue": "karthequian/gruyere:latest",
       "metadata": {
         "description": "The docker container to use when deploying the example application."
       },

@@ -150,9 +150,9 @@ extension_services:
               members:
                 - serverAddresses:
                     - 10.0.3.4
-                  servicePort: 80
+                  servicePort: 443
               monitors:
-                - http
+                - tcp
           HTTP_Service:
             class: Application
             template: http
