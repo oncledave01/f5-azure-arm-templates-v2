@@ -31,9 +31,9 @@
         },
         "instanceType":{
             "allowedValues":[
-                "Standard_D2s_v3"
+                "Standard_DS3_v2"
             ],
-            "defaultValue":"Standard_D2s_v3",
+            "defaultValue":"Standard_DS3_v2",
             "metadata":{
                 "description":"Enter valid instance type."
             },
