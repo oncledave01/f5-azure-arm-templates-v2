@@ -30,9 +30,6 @@
             "type":"string"
         },
         "instanceType":{
-            "allowedValues":[
-                "Standard_DS3_v2"
-            ],
             "defaultValue":"Standard_DS3_v2",
             "metadata":{
                 "description":"Enter valid instance type."
