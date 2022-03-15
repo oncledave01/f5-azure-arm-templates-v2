@@ -2,6 +2,34 @@
   "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentTemplate.json#",
   "contentVersion": "1.4.0.0",
   "parameters": {
+		"LabNumber": {
+			"type": "string",
+			"defaultValue": "01",
+			"allowedValues": [
+				"01",
+				"02",
+				"03",
+				"04",
+				"05",
+				"06",
+				"07",
+				"08",
+				"09",
+				"10",
+				"11",
+				"12",
+				"13",
+				"14",
+				"15",
+				"16",
+				"17",
+				"18",
+				"19"
+			],
+			"metadata": {
+				"description": "Lab number"
+			}
+		},
     "2ndAPPServer": {
       "defaultValue": false,
       "metadata": {
@@ -128,7 +156,7 @@
   },
   "variables": {
     "contentVersion": "[deployment().properties.template.contentVersion]",
-    "uniqueString": "[toLower(parameters('uniqueString'))]",
+    "uniqueString": "[concat(toLower(parameters('uniqueString')), parameters('LabNumber')]",
     "adminUsername": "[string('azureuser')]",
     "numSubnets": "[if(variables('provisionApp'), add(parameters('numNics'), 1), parameters('numNics'))]",
     "vnetName": "[concat(variables('uniqueString'), '-vnet')]",

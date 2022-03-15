@@ -2,6 +2,9 @@
   "$schema": "http://schema.management.azure.com/schemas/2015-01-01/deploymentParameters.json#",
   "contentVersion": "1.4.0.0",
   "parameters": {
+		"LabNumber": {
+			"value": "01"
+		},
     "externalLoadBalancerName": {
       "value": "None"
     },
