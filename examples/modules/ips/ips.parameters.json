@@ -1,0 +1,54 @@
+{
+  "$schema": "http://schema.management.azure.com/schemas/2015-01-01/deploymentParameters.json#",
+  "contentVersion": "1.4.0.0",
+  "parameters": {
+    "adminUsername": {
+      "value": "azureuser"
+    },
+    "adminPassword": {
+      "value": "sports-lionize-DOCTRINE1"
+    },
+    "appContainerName": {
+      "value": "owasp/security-shepherd:latest"
+    },
+    "cloudInitUrl": {
+      "value": ""
+    },
+    "createAutoscaleGroup": {
+      "value": false
+    },
+    "instanceName": {
+      "value": "ips01"
+    },
+    "instanceType": {
+      "value": "Standard_DS3_v2"
+    },
+    "nsgId": {
+      "value": ""
+    },
+    "sshKey": {
+      "value": ""
+    },
+    "subnetId": {
+      "value": ""
+    },
+    "mgmtPublicIpId": {
+      "value": ""
+    },
+    "tagValues": {
+      "value": {
+        "application": "APP",
+        "cost": "COST",
+        "environment": "ENV",
+        "group": "GROUP",
+        "owner": "OWNER"
+      }
+    },
+    "vmScaleSetMaxCount": {
+      "value": 10
+    },
+    "vmScaleSetMinCount": {
+      "value": 1
+    }
+  }
+}

@@ -1,0 +1,15 @@
+#cloud-config
+
+package_update: true
+package_upgrade: true
+
+runcmd:
+  - apt-get update -y
+  - apt-get -y install docker.io
+  - git clone https://github.com/StamusNetworks/SELKS.git
+  - cd SELKS/docker/ && ./easy-setup.sh
+  - cd SELKS/docker/ && docker-compose up -d
+  #- docker run --name f5demo -p 80:8008 -p 443:443 -d karthequian/gruyere:latest
+  #f5devcentral/f5-demo-app:latest
+
+final_message: "The system is finally up, after $UPTIME seconds"
