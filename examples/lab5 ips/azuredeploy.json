@@ -123,6 +123,7 @@
     "contentVersion": "[deployment().properties.template.contentVersion]",
     "uniqueString": "[concat(toLower(parameters('uniqueString')), parameters('LabNumber'))]",
     "adminUsername": "[string('azureuser')]",
+    "adminPassword": "[string('sports-lionize-DOCTRINE1')]",
     "numSubnets": "[if(variables('provisionApp'), add(parameters('numNics'), 1), parameters('numNics'))]",
     "vnetName": "[concat(variables('uniqueString'), '-vnet')]",
     "vnetAddressPrefix": "10.0",
