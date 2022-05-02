@@ -9,7 +9,11 @@ runcmd:
   - git clone https://github.com/StamusNetworks/SELKS.git
   - cd SELKS/docker/ && ./easy-setup.sh
   - cd SELKS/docker/ && docker-compose up -d
-  #- docker run --name f5demo -p 80:8008 -p 443:443 -d karthequian/gruyere:latest
-  #f5devcentral/f5-demo-app:latest
+  - docker-compose up -d
+  - cd  scripts/
+  - wget https://github.com/oncledave01/f5-azure-arm-templates-v2/raw/main/examples/lab5%20ips/pcap/2022-05-02-Brazil-sourced-malspam-infection.pcap
+  - ./readpcap.sh 2022-05-02-Brazil-sourced-malspam-infection.pcap
+  - wget https://github.com/oncledave01/f5-azure-arm-templates-v2/raw/main/examples/lab5%20ips/pcap/2022-04-22-forensic-challenge-traffic.pcap
+  - ./readpcap.sh 2022-04-22-forensic-challenge-traffic.pcap
 
 final_message: "The system is finally up, after $UPTIME seconds"
