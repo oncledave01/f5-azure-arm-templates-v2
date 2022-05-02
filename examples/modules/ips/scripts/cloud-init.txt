@@ -8,7 +8,6 @@ runcmd:
   - apt-get -y install docker.io
   - git clone https://github.com/StamusNetworks/SELKS.git
   - cd SELKS/docker/ && ./easy-setup.sh
-  - cd SELKS/docker/ && docker-compose up -d
   - docker-compose up -d
   - cd  scripts/
   - wget https://github.com/oncledave01/f5-azure-arm-templates-v2/raw/main/examples/lab5%20ips/pcap/2022-05-02-Brazil-sourced-malspam-infection.pcap
