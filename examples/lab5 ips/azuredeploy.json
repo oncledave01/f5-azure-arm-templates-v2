@@ -320,7 +320,7 @@
             "value": "[if(equals(parameters('numNics'), 1), reference('dagTemplate').outputs.nsg0Id.value, reference('dagTemplate').outputs.nsg1Id.value)]"
           },
           "appContainerName": {
-            "value": "[parameters('appContainerName')]"
+            "value": "SELKS"
           },
           "cloudInitUrl": {
             "value": "[variables('cloudInitUrl')]"
