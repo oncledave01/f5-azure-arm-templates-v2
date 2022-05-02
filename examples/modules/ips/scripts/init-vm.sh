@@ -8,4 +8,4 @@ apt-get -y install docker.io
 # install selks in docker
 git clone https://github.com/StamusNetworks/SELKS.git
 cd SELKS/docker/ && ./easy-setup.sh
-cd SELKS/docker/ && docker-compose up -d
+docker-compose up -d
