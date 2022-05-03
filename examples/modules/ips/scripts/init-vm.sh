@@ -12,6 +12,6 @@ docker-compose up -d
 
 cd  scripts
 wget https://github.com/oncledave01/f5-azure-arm-templates-v2/raw/main/examples/lab5%20ips/pcap/2022-05-02-Brazil-sourced-malspam-infection.pcap
-./readpcap.sh 2022-05-02-Brazil-sourced-malspam-infection.pcap
 wget https://github.com/oncledave01/f5-azure-arm-templates-v2/raw/main/examples/lab5%20ips/pcap/2022-04-22-forensic-challenge-traffic.pcap
+./readpcap.sh 2022-05-02-Brazil-sourced-malspam-infection.pcap
 ./readpcap.sh 2022-04-22-forensic-challenge-traffic.pcap
