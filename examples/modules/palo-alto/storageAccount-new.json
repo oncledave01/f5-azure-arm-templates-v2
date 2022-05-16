@@ -23,10 +23,6 @@
           "Description": "The type of the Storage Account created"
         },
         "defaultValue": "Standard_LRS"
-      },
-      "storageAccountExistingRG" : {
-        "type" : "string",
-        "defaultValue" : ""
       }
     },
     "resources": [
