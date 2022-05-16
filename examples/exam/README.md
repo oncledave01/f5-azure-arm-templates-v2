@@ -1,3 +1,7 @@
+### Deploying via the Azure Deploy button
+
+[![Deploy to Azure](http://azuredeploy.net/deploybutton.png)](https://portal.azure.com/#create/Microsoft.Template/uri/https%3A%2F%2Fraw.githubusercontent.com%2Foncledave01%2Ff5-azure-arm-templates-v2%2Fmain%2Fexamples%2Flab3%2Fazuredeploy.json)
+
 # Deploying the BIG-IP VE in Azure - Example Quickstart BIG-IP WAF (LTM + ASM) - Virtual Machine
 
 [![Releases](https://img.shields.io/github/release/f5networks/f5-azure-arm-templates-v2.svg)](https://github.com/f5networks/f5-azure-arm-templates-v2/releases)

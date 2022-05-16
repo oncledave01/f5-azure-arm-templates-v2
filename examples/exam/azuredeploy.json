@@ -31,7 +31,7 @@
 			}
 		},
     "2ndAPPServer": {
-      "defaultValue": false,
+      "defaultValue": true,
       "metadata": {
         "description": "Second App Server in LAN"
       },
@@ -92,7 +92,7 @@
         2,
         3
       ],
-      "defaultValue": 3,
+      "defaultValue": 2,
       "metadata": {
         "description": "Enter valid number of network interfaces to create on the BIG-IP VE instance."
       },
