@@ -92,7 +92,7 @@
         2,
         3
       ],
-      "defaultValue": 2,
+      "defaultValue": 3,
       "metadata": {
         "description": "Enter valid number of network interfaces to create on the BIG-IP VE instance."
       },
@@ -641,7 +641,7 @@
             "value": []
           },
           "nic2SubnetId": {
-            "value": "[reference('networkTemplate').outputs.subnets.value[3])]"
+            "value": "[reference('networkTemplate').outputs.subnets.value[3]]"
           },
           "nic2NsgId": {
             "value": "[reference('dagTemplate').outputs.nsg2Id.value]"
