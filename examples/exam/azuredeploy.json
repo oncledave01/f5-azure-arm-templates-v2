@@ -626,10 +626,10 @@
             "value": "[variables('mgmtSelfIpPalo')]"
           },
           "nic1SubnetId": {
-            "value": "[if(greaterOrEquals(parameters('numNics'), 2), reference('networkTemplate').outputs.subnets.value[2], '')]"
+            "value": "[reference('networkTemplate').outputs.subnets.value[2]]"
           },
           "nic1NsgId": {
-            "value": "[if(greaterOrEquals(parameters('numNics'), 2), reference('dagTemplate').outputs.nsg1Id.value, '')]"
+            "value": "[reference('dagTemplate').outputs.nsg1Id.value]"
           },
           "nic1PrimaryPublicId": {
             "value": ""
@@ -641,10 +641,10 @@
             "value": []
           },
           "nic2SubnetId": {
-            "value": "[if(greaterOrEquals(parameters('numNics'), 3), reference('networkTemplate').outputs.subnets.value[3], '')]"
+            "value": "[reference('networkTemplate').outputs.subnets.value[3])]"
           },
           "nic2NsgId": {
-            "value": "[if(greaterOrEquals(parameters('numNics'), 3), reference('dagTemplate').outputs.nsg2Id.value, '')]"
+            "value": "[reference('dagTemplate').outputs.nsg2Id.value]"
           },
           "nic2PrimaryPublicId": {
             "value": ""
