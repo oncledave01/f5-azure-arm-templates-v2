@@ -11,7 +11,7 @@
         },
         "numSubnets": {
             "defaultValue": 1,
-            "type": "Int",
+            "type": "int",
             "metadata": {
                 "description": "Indicate the number of subnets to create."
             }

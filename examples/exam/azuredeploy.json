@@ -246,7 +246,8 @@
     "PaloInstanceType": "Standard_D3",
     "mgmtSelfIpPalo": "10.0.0.12",
     "nic1SelfIpPalo": "10.0.2.12",
-    "nic2SelfIpPalo": "10.0.2.12"
+    "nic2SelfIpPalo": "10.0.2.12",
+    "vmNamePalo" :"[concat(variables('uniqueString'), '-palo-vm')]"
   },
   "resources": [
     {
