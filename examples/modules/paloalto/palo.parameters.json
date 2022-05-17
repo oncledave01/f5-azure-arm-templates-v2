@@ -5,6 +5,9 @@
     "adminUsername": {
       "value": "azureuser"
     },
+    "adminPassword": {
+      "value": "sports-lionize-DOCTRINE1"
+    },
     "bigIpRuntimeInitConfig": {
       "value": ""
     },

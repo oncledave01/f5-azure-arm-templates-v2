@@ -2,34 +2,6 @@
     "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentTemplate.json#",
     "contentVersion": "1.4.0.0",
     "parameters": {
-		"LabNumber": {
-			"type": "string",
-			"defaultValue": "01",
-			"allowedValues": [
-				"01",
-				"02",
-				"03",
-				"04",
-				"05",
-				"06",
-				"07",
-				"08",
-				"09",
-				"10",
-				"11",
-				"12",
-				"13",
-				"14",
-				"15",
-				"16",
-				"17",
-				"18",
-				"19"
-			],
-			"metadata": {
-				"description": "Lab number"
-			}
-		},
         "uniqueString": {
             "metadata": {
                 "description": "REQUIRED - A prefix that will be used to name template resources. Because some resources require globally unique names, we recommend using a unique value."

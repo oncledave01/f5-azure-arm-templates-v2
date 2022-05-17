@@ -216,6 +216,7 @@
             "location": "[resourceGroup().location]",
             "name": "[concat(variables('vmName'),'/vmInit')]",
             "properties": {
+                "autoUpgradeMinorVersion": false,
                 "publisher": "Microsoft.Azure.Extensions",
                 "settings": {
                     "commandToExecute": "[variables('commandToExecute')]"
@@ -234,7 +235,7 @@
             "location": "[resourceGroup().location]",
             "name": "[variables('vmssName')]",
             "properties": {
-                "overprovision": "false",
+                "overprovision": false,
                 "upgradePolicy": {
                     "mode": "Manual"
                 },
