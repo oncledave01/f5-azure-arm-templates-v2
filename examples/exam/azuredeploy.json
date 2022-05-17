@@ -243,7 +243,7 @@
     "nic1ServiceIP1": "[concat('10.0.', variables('nic1ServiceIPSubnetIndex'), '.101')]",
     "vmName": "[concat(variables('uniqueString'), '-bigip-vm')]",
     "PaloImage": "paloaltonetworks:byol:vmseries1:latest",
-    "PaloInstanceType": "Standard_D3",
+    "PaloInstanceType": "Standard_D3_v2",
     "mgmtSelfIpPalo": "10.0.0.12",
     "nic1SelfIpPalo": "10.0.2.12",
     "nic2SelfIpPalo": "10.0.2.12",
