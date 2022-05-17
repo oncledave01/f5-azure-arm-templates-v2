@@ -152,6 +152,20 @@
         "description": "Default key/value resource tags will be added to the resources in this deployment, if you would like the values to be unique adjust them as needed for each key."
       },
       "type": "object"
+    },
+    "PaloRuntimeInitConfig": {
+      "defaultValue": "",
+      "metadata": {
+        "description": "Supply a URL to the palo-runtime-init configuration file in YAML or JSON format, or an escaped JSON string to use for f5-bigip-runtime-init configuration."
+      },
+      "type": "string"
+    },
+    "PaloRuntimeInitPackageUrl": {
+      "defaultValue": ""
+      "metadata": {
+        "description": "Supply a URL to the palo-runtime-init configuration file in YAML or JSON format, or an escaped JSON string to use for f5-bigip-runtime-init configuration."
+      },
+      "type": "string"
     }
   },
   "variables": {
