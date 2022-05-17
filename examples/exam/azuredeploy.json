@@ -2,34 +2,34 @@
   "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentTemplate.json#",
   "contentVersion": "1.4.0.0",
   "parameters": {
-		"LabNumber": {
-			"type": "string",
-			"defaultValue": "01",
-			"allowedValues": [
-				"01",
-				"02",
-				"03",
-				"04",
-				"05",
-				"06",
-				"07",
-				"08",
-				"09",
-				"10",
-				"11",
-				"12",
-				"13",
-				"14",
-				"15",
-				"16",
-				"17",
-				"18",
-				"19"
-			],
-			"metadata": {
-				"description": "Lab number"
-			}
-		},
+    "LabNumber": {
+      "type": "string",
+      "defaultValue": "01",
+      "allowedValues": [
+        "01",
+        "02",
+        "03",
+        "04",
+        "05",
+        "06",
+        "07",
+        "08",
+        "09",
+        "10",
+        "11",
+        "12",
+        "13",
+        "14",
+        "15",
+        "16",
+        "17",
+        "18",
+        "19"
+      ],
+      "metadata": {
+        "description": "Lab number"
+      }
+    },
     "2ndAPPServer": {
       "defaultValue": true,
       "metadata": {
@@ -152,20 +152,6 @@
         "description": "Default key/value resource tags will be added to the resources in this deployment, if you would like the values to be unique adjust them as needed for each key."
       },
       "type": "object"
-    },
-    "PaloRuntimeInitConfig": {
-      "defaultValue": "",
-      "metadata": {
-        "description": "Supply a URL to the palo-runtime-init configuration file in YAML or JSON format, or an escaped JSON string to use for f5-bigip-runtime-init configuration."
-      },
-      "type": "string"
-    },
-    "PaloRuntimeInitPackageUrl": {
-      "defaultValue": "",
-      "metadata": {
-        "description": "Supply a URL to the palo-runtime-init configuration file in YAML or JSON format, or an escaped JSON string to use for f5-bigip-runtime-init configuration."
-      },
-      "type": "string"
     }
   },
   "variables": {
@@ -767,7 +753,7 @@
     "appVmName2": {
       "condition": "[variables('provisionApp')]",
       "type": "string",
-       "value": "[if(parameters('2ndAPPServer'), reference('appTemplate2').outputs.vmName.value, 'None')]"
+      "value": "[if(parameters('2ndAPPServer'), reference('appTemplate2').outputs.vmName.value, 'None')]"
     }
   }
 }
