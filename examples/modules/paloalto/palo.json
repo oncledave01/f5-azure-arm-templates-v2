@@ -31,7 +31,7 @@
       "type": "string"
     },
     "instanceType": {
-      "defaultValue": "Standard_DS2_v2",
+      "defaultValue": "Standard_D3",
       "metadata": {
         "description": "Enter valid instance type."
       },
@@ -222,11 +222,11 @@
     "imagePlan": {
       "name": "[variables('skuToUse')]",
       "product": "[variables('offerToUse')]",
-      "publisher": "f5-networks"
+      "publisher": "paloaltonetworks"
     },
     "imageReference": {
       "offer": "[variables('offerToUse')]",
-      "publisher": "f5-networks",
+      "publisher": "paloaltonetworks",
       "sku": "[variables('skuToUse')]",
       "version": "[variables('versionToUse')]"
     },
@@ -334,9 +334,9 @@
         }
       }
     ],
-    "offerToUse": "[if(variables('useCustomImage'), json('null'), variables('image')[1])]",
+    "offerToUse": "vmseries1",
     "singleQuote": "'",
-    "skuToUse": "[if(variables('useCustomImage'), json('null'), variables('image')[2])]",
+    "skuToUse": "byol",
     "storageProfileArray": {
       "customImage": {
         "imageReference": {
@@ -446,7 +446,7 @@
           "computerName": "[parameters('vmName')]",
           "customData": "[json('null')]",
           "linuxConfiguration": {
-            "disablePasswordAuthentication": true,
+            "disablePasswordAuthentication": false,
             "ssh": {
               "publicKeys": [
                 {
@@ -476,23 +476,6 @@
         "scope": "[resourceGroup().id]"
       },
       "type": "Microsoft.Authorization/roleAssignments"
-    },
-    {
-      "apiVersion": "2019-12-01",
-      "dependsOn": [
-        "[variables('vmId')]",
-        "[guid(resourceGroup().id, 'roleId')]"
-      ],
-      "location": "[resourceGroup().location]",
-      "name": "[concat(parameters('vmName'),'/onboarder')]",
-      "properties": {
-        "publisher": "Microsoft.Azure.Extensions",
-        "settings": "[variables('extSettingsRef')]",
-        "type": "CustomScript",
-        "typeHandlerVersion": "2.0"
-      },
-      "tags": "[if(empty(parameters('tagValues')), json('null'), parameters('tagValues'))]",
-      "type": "Microsoft.Compute/virtualMachines/extensions"
     }
   ],
   "outputs": {

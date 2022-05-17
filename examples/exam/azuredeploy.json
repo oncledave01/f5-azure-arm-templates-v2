@@ -158,6 +158,7 @@
     "contentVersion": "[deployment().properties.template.contentVersion]",
     "uniqueString": "[concat(toLower(parameters('uniqueString')), parameters('LabNumber'))]",
     "adminUsername": "[string('azureuser')]",
+    "adminPassword": "[string('sports-lionize-DOCTRINE1')]",
     "numSubnets": "[if(variables('provisionApp'), add(parameters('numNics'), 2), add(parameters('numNics'), 1))]",
     "vnetName": "[concat(variables('uniqueString'), '-vnet')]",
     "vnetAddressPrefix": "10.0",
@@ -226,7 +227,12 @@
     "nic2SelfIp": "10.0.2.11",
     "nic1ServiceIPSubnetIndex": "[if(equals(parameters('numNics'), 1), '0', '1')]",
     "nic1ServiceIP1": "[concat('10.0.', variables('nic1ServiceIPSubnetIndex'), '.101')]",
-    "vmName": "[concat(variables('uniqueString'), '-bigip-vm')]"
+    "vmName": "[concat(variables('uniqueString'), '-bigip-vm')]",
+    "PaloImage": "paloaltonetworks:byol:vmseries1:latest",
+    "PaloInstanceType": "Standard_D3",
+    "mgmtSelfIpPalo": "10.0.0.12",
+    "nic1SelfIpPalo": "10.0.2.12",
+    "nic2SelfIpPalo": "10.0.2.12"
   },
   "resources": [
     {
@@ -303,7 +309,7 @@
             "value": 1
           },
           "numberPublicMgmtIpAddresses": {
-            "value": 1
+            "value": 2
           },
           "tagValues": {
             "value": "[parameters('tagValues')]"
@@ -329,6 +335,9 @@
         "parameters": {
           "adminUsername": {
             "value": "[variables('adminUsername')]"
+          },
+          "adminPassword": {
+            "value": "[variables('adminPassword')]"
           },
           "sshKey": {
             "value": "[parameters('sshKey')]"
@@ -379,6 +388,9 @@
         "parameters": {
           "adminUsername": {
             "value": "[variables('adminUsername')]"
+          },
+          "adminPassword": {
+            "value": "[variables('adminPassword')]"
           },
           "sshKey": {
             "value": "[parameters('sshKey')]"
@@ -473,6 +485,9 @@
           "adminUsername": {
             "value": "[variables('adminUsername')]"
           },
+          "adminPassword": {
+            "value": "[variables('adminPassword')]"
+          },
           "image": {
             "value": "[parameters('bigIpImage')]"
           },
@@ -542,7 +557,7 @@
             "value": "[parameters('tagValues')]"
           },
           "uniqueString": {
-            "value": "[variables('uniqueString')]"
+            "value": "[concat(variables('uniqueString'),'-bigip')]"
           },
           "useAvailabilityZones": {
             "value": "[parameters('useAvailabilityZones')]"
@@ -552,6 +567,105 @@
           },
           "vmName": {
             "value": "[variables('vmName')]"
+          }
+        }
+      }
+    },
+    {
+      "type": "Microsoft.Resources/deployments",
+      "apiVersion": "2021-04-01",
+      "name": "PaloTemplate",
+      "dependsOn": [
+        "networkTemplate",
+        "dagTemplate"
+      ],
+      "properties": {
+        "mode": "Incremental",
+        "templateLink": {
+          "uri": "[concat(parameters('templateBaseUrl'), parameters('artifactLocation'), 'modules/paloalto/palo.json')]",
+          "contentVersion": "[variables('contentVersion')]"
+        },
+        "parameters": {
+          "adminUsername": {
+            "value": "[variables('adminUsername')]"
+          },
+          "adminPassword": {
+            "value": "[variables('adminPassword')]"
+          },
+          "image": {
+            "value": "[variables('PaloImage')]"
+          },
+          "instanceType": {
+            "value": "[variables('PaloInstanceType')]"
+          },
+          "mgmtSubnetId": {
+            "value": "[reference('networkTemplate').outputs.subnets.value[0]]"
+          },
+          "mgmtNsgID": {
+            "value": "[reference('dagTemplate').outputs.nsg0Id.value]"
+          },
+          "mgmtPublicIpId": {
+            "value": "[if(parameters('provisionPublicIp'), reference('dagTemplate').outputs.mgmtIpIds.value[1], '')]"
+          },
+          "mgmtSelfIp": {
+            "value": "[variables('mgmtSelfIpPalo')]"
+          },
+          "nic1SubnetId": {
+            "value": "[if(greaterOrEquals(parameters('numNics'), 2), reference('networkTemplate').outputs.subnets.value[2], '')]"
+          },
+          "nic1NsgId": {
+            "value": "[if(greaterOrEquals(parameters('numNics'), 2), reference('dagTemplate').outputs.nsg1Id.value, '')]"
+          },
+          "nic1PrimaryPublicId": {
+            "value": ""
+          },
+          "nic1SelfIp": {
+            "value": "[variables('nic1SelfIpPalo')]"
+          },
+          "nic1ServiceIPs": {
+            "value": []
+          },
+          "nic2SubnetId": {
+            "value": "[if(greaterOrEquals(parameters('numNics'), 3), reference('networkTemplate').outputs.subnets.value[3], '')]"
+          },
+          "nic2NsgId": {
+            "value": "[if(greaterOrEquals(parameters('numNics'), 3), reference('dagTemplate').outputs.nsg2Id.value, '')]"
+          },
+          "nic2PrimaryPublicId": {
+            "value": ""
+          },
+          "nic2SelfIp": {
+            "value": "[variables('nic2SelfIpPalo')]"
+          },
+          "nic2ServiceIPs": {
+            "value": []
+          },
+          "roleDefinitionId": {
+            "value": ""
+          },
+          "bigIpRuntimeInitPackageUrl": {
+            "value": "[parameters('PaloRuntimeInitPackageUrl')]"
+          },
+          "bigIpRuntimeInitConfig": {
+            "value": "[parameters('PaloRuntimeInitConfig')]"
+          },
+          "sshKey": {
+            "value": "[parameters('sshKey')]"
+          },
+          "tagValues": {
+            "value": "[parameters('tagValues')]"
+          },
+          "uniqueString": {
+            "value": "[concat(variables('uniqueString'),'-palo')]"
+          },
+          "useAvailabilityZones": {
+            "value": "[parameters('useAvailabilityZones')]"
+          },
+          "userAssignManagedIdentity": {
+            "value": ""
+          },
+          "vmName": {
+            "value": "[variables('vmNamePalo')]"
           }
         }
       }
