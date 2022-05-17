@@ -321,7 +321,7 @@
             "value": "[variables('nsg2')]"
           },
           "numberPublicExternalIpAddresses": {
-            "value": 1
+            "value": 2
           },
           "numberPublicMgmtIpAddresses": {
             "value": 2
@@ -536,7 +536,7 @@
           "nic1ServiceIPs": {
             "value": [
               {
-                "publicIpId": "[reference('dagTemplate').outputs.externalIpIds.value[0]]",
+                "publicIpId": "[reference('dagTemplate').outputs.externalIpIds.value[1]]",
                 "privateIpAddress": "[variables('nic1ServiceIP1')]"
               }
             ]
@@ -723,11 +723,11 @@
     },
     "vip1PublicIp": {
       "type": "string",
-      "value": "[reference('dagTemplate').outputs.externalIps.value[0]]"
+      "value": "[reference('dagTemplate').outputs.externalIps.value[1]]"
     },
     "vip1PublicIpDns": {
       "type": "string",
-      "value": "[reference('dagTemplate').outputs.externalIpDns.value[0]]"
+      "value": "[reference('dagTemplate').outputs.externalIpDns.value[1]]"
     },
     "vip1PrivateUrlHttp": {
       "type": "string",
@@ -735,7 +735,7 @@
     },
     "vip1PublicUrlHttp": {
       "type": "string",
-      "value": "[concat('http://', reference('dagTemplate').outputs.externalIps.value[0], '/')]"
+      "value": "[concat('http://', reference('dagTemplate').outputs.externalIps.value[1], '/')]"
     },
     "vip1PrivateUrlHttps": {
       "type": "string",
@@ -743,7 +743,7 @@
     },
     "vip1PublicUrlHttps": {
       "type": "string",
-      "value": "[concat('https://', reference('dagTemplate').outputs.externalIps.value[0], '/')]"
+      "value": "[concat('https://', reference('dagTemplate').outputs.externalIps.value[1], '/')]"
     },
     "appUsername": {
       "condition": "[variables('provisionApp')]",
