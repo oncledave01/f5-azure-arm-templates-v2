@@ -723,11 +723,11 @@
     },
     "vip1PublicIp": {
       "type": "string",
-      "value": "[reference('dagTemplate').outputs.externalIps.value[1]]"
+      "value": "[reference('dagTemplate').outputs.externalIps.value[0]]"
     },
     "vip1PublicIpDns": {
       "type": "string",
-      "value": "[reference('dagTemplate').outputs.externalIpDns.value[1]]"
+      "value": "[reference('dagTemplate').outputs.externalIpDns.value[0]]"
     },
     "vip1PrivateUrlHttp": {
       "type": "string",
