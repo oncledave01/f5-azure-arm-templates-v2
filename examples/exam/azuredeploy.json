@@ -161,7 +161,7 @@
       "type": "string"
     },
     "PaloRuntimeInitPackageUrl": {
-      "defaultValue": ""
+      "defaultValue": "",
       "metadata": {
         "description": "Supply a URL to the palo-runtime-init configuration file in YAML or JSON format, or an escaped JSON string to use for f5-bigip-runtime-init configuration."
       },
