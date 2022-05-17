@@ -246,7 +246,7 @@
     "PaloInstanceType": "Standard_D3_v2",
     "mgmtSelfIpPalo": "10.0.0.12",
     "nic1SelfIpPalo": "10.0.2.12",
-    "nic2SelfIpPalo": "10.0.2.12",
+    "nic2SelfIpPalo": "10.0.3.12",
     "vmNamePalo" :"[concat(variables('uniqueString'), '-palo-vm')]"
   },
   "resources": [
@@ -536,7 +536,7 @@
           "nic1ServiceIPs": {
             "value": [
               {
-                "publicIpId": "[reference('dagTemplate').outputs.externalIpIds.value[1]]",
+                "publicIpId": "[reference('dagTemplate').outputs.externalIpIds.value[0]]",
                 "privateIpAddress": "[variables('nic1ServiceIP1')]"
               }
             ]
@@ -735,7 +735,7 @@
     },
     "vip1PublicUrlHttp": {
       "type": "string",
-      "value": "[concat('http://', reference('dagTemplate').outputs.externalIps.value[1], '/')]"
+      "value": "[concat('http://', reference('dagTemplate').outputs.externalIps.value[0], '/')]"
     },
     "vip1PrivateUrlHttps": {
       "type": "string",
@@ -743,7 +743,7 @@
     },
     "vip1PublicUrlHttps": {
       "type": "string",
-      "value": "[concat('https://', reference('dagTemplate').outputs.externalIps.value[1], '/')]"
+      "value": "[concat('https://', reference('dagTemplate').outputs.externalIps.value[0], '/')]"
     },
     "appUsername": {
       "condition": "[variables('provisionApp')]",
