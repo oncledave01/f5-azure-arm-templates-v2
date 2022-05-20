@@ -261,7 +261,7 @@
     "PaloInstanceType": "Standard_D3_v2",
     "mgmtSelfIpPalo": "10.0.0.12",
     "nic1SelfIpPalo": "10.0.2.12",
-    "nic2SelfIpPalo": "10.1.1.12",
+    "nic2SelfIpPalo": "10.1.0.12",
     "vmNamePalo" :"[concat(variables('uniqueString'), '-palo-vm')]"
   },
   "resources": [
@@ -411,7 +411,7 @@
             "value": "[variables('appInstanceType')]"
           },
           "subnetId": {
-            "value": "[reference('networkTemplateInt').outputs.subnets.value[1]]"
+            "value": "[reference('networkTemplateInt').outputs.subnets.value[0]]"
           },
           "nsgId": {
             "value": "[if(equals(parameters('numNics'), 1), reference('dagTemplate').outputs.nsg0Id.value, reference('dagTemplate').outputs.nsg1Id.value)]"
@@ -463,7 +463,7 @@
             "value": "[variables('appInstanceType')]"
           },
           "subnetId": {
-            "value": "[reference('networkTemplateInt').outputs.subnets.value[1]]"
+            "value": "[reference('networkTemplateInt').outputs.subnets.value[0]]"
           },
           "nsgId": {
             "value": "[if(equals(parameters('numNics'), 1), reference('dagTemplate').outputs.nsg0Id.value, reference('dagTemplate').outputs.nsg1Id.value)]"
@@ -684,7 +684,7 @@
             "value": []
           },
           "nic2SubnetId": {
-            "value": "[reference('networkTemplateInt').outputs.subnets.value[1]]"
+            "value": "[reference('networkTemplateInt').outputs.subnets.value[0]]"
           },
           "nic2NsgId": {
             "value": "[reference('dagTemplate').outputs.nsg2Id.value]"
