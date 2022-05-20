@@ -82,7 +82,7 @@ extension_services:
             class: System
             autoPhonehome: false
             hostname: '{{{HOST_NAME}}}.local'
-          quickstart:
+          azureuser:
             class: User
             userType: regular
             partitionAccess:
