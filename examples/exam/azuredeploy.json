@@ -176,7 +176,7 @@
     "numSubnets": "[if(variables('provisionApp'), add(parameters('numNics'), 1), parameters('numNics'))]",
     "vnetName": "[concat(variables('uniqueString'), '-vnet')]",
     "vnetAddressPrefix": "10.0",
-    "numSubnetsInt": "1",
+    "numSubnetsInt": 1,
     "vnetNameInt": "[concat(variables('uniqueString'), 'Int-vnet')]",
     "vnetAddressPrefixInt": "10.1",
     "createAutoscaleGroup": false,
