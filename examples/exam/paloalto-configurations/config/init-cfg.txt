@@ -1,0 +1,7 @@
+type=dhcp-client
+ip-address=
+default-gateway=
+netmask=
+vm-series-auto-registration-pin-id=abcdefgh12345678
+vm-series-auto-registration-pin-value=zyxwvut-09876543
+hostname=Condorcet_LAB
