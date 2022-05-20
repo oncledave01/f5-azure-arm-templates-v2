@@ -98,6 +98,18 @@
       },
       "type": "int"
     },
+    "numIntSubs": {
+      "allowedValues": [
+        1,
+        2,
+        3
+      ],
+      "defaultValue": 1,
+      "metadata": {
+        "description": "Enter valid number of internal networks."
+      },
+      "type": "int"
+    },
     "provisionPublicIp": {
       "defaultValue": true,
       "metadata": {
@@ -176,7 +188,7 @@
     "numSubnets": "[if(variables('provisionApp'), add(parameters('numNics'), 1), parameters('numNics'))]",
     "vnetName": "[concat(variables('uniqueString'), '-vnet')]",
     "vnetAddressPrefix": "10.0",
-    "numSubnetsInt": 1,
+    "numSubnetsInt": "variables('numIntSubs')",
     "vnetNameInt": "[concat(variables('uniqueString'), 'Int-vnet')]",
     "vnetAddressPrefixInt": "10.1",
     "createAutoscaleGroup": false,
