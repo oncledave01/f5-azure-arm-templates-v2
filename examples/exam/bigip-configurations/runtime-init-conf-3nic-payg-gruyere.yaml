@@ -149,7 +149,7 @@ extension_services:
               remark: Gruyere pool
               members:
                 - serverAddresses:
-                    - 10.1.0.4
+                    - 10.0.3.4
                   servicePort: 80
               monitors:
                 - tcp

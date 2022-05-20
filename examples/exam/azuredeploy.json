@@ -98,18 +98,6 @@
       },
       "type": "int"
     },
-    "numIntSubs": {
-      "allowedValues": [
-        1,
-        2,
-        3
-      ],
-      "defaultValue": 1,
-      "metadata": {
-        "description": "Enter valid number of internal networks."
-      },
-      "type": "int"
-    },
     "provisionPublicIp": {
       "defaultValue": true,
       "metadata": {
@@ -185,12 +173,9 @@
     "uniqueString": "[concat(toLower(parameters('uniqueString')), parameters('LabNumber'))]",
     "adminUsername": "[string('azureuser')]",
     "adminPassword": "[string('sports-lionize-DOCTRINE1')]",
-    "numSubnets": "[if(variables('provisionApp'), add(parameters('numNics'), 1), parameters('numNics'))]",
+    "numSubnets": "[if(variables('provisionApp'), add(parameters('numNics'), 2), add(parameters('numNics'), 1))]",
     "vnetName": "[concat(variables('uniqueString'), '-vnet')]",
     "vnetAddressPrefix": "10.0",
-    "numSubnetsInt": "[parameters('numIntSubs')]",
-    "vnetNameInt": "[concat(variables('uniqueString'), 'Int-vnet')]",
-    "vnetAddressPrefixInt": "10.1",
     "createAutoscaleGroup": false,
     "externalLoadBalancerName": "None",
     "internalLoadBalancerName": "None",
@@ -261,7 +246,7 @@
     "PaloInstanceType": "Standard_D3_v2",
     "mgmtSelfIpPalo": "10.0.0.12",
     "nic1SelfIpPalo": "10.0.2.12",
-    "nic2SelfIpPalo": "10.1.0.12",
+    "nic2SelfIpPalo": "10.0.3.12",
     "vmNamePalo" :"[concat(variables('uniqueString'), '-palo-vm')]"
   },
   "resources": [
@@ -284,35 +269,6 @@
           },
           "vnetAddressPrefix": {
             "value": "[variables('vnetAddressPrefix')]"
-          },
-          "createNatGateway": {
-            "value": "[not(parameters('provisionPublicIp'))]"
-          },
-          "tagValues": {
-            "value": "[parameters('tagValues')]"
-          }
-        }
-      }
-    },
-    {
-      "type": "Microsoft.Resources/deployments",
-      "apiVersion": "2021-04-01",
-      "name": "networkTemplateInt",
-      "properties": {
-        "mode": "Incremental",
-        "templateLink": {
-          "uri": "[concat(parameters('templateBaseUrl'), parameters('artifactLocation'), 'modules/network/network.json')]",
-          "contentVersion": "[variables('contentVersion')]"
-        },
-        "parameters": {
-          "numSubnets": {
-            "value": "[variables('numSubnetsInt')]"
-          },
-          "vnetName": {
-            "value": "[variables('vnetNameInt')]"
-          },
-          "vnetAddressPrefix": {
-            "value": "[variables('vnetAddressPrefixInt')]"
           },
           "createNatGateway": {
             "value": "[not(parameters('provisionPublicIp'))]"
@@ -382,7 +338,7 @@
       "apiVersion": "2021-04-01",
       "name": "appTemplate",
       "dependsOn": [
-        "networkTemplateInt",
+        "networkTemplate",
         "dagTemplate"
       ],
       "properties": {
@@ -411,7 +367,7 @@
             "value": "[variables('appInstanceType')]"
           },
           "subnetId": {
-            "value": "[reference('networkTemplateInt').outputs.subnets.value[0]]"
+            "value": "[reference('networkTemplate').outputs.subnets.value[parameters('numNics')]]"
           },
           "nsgId": {
             "value": "[if(equals(parameters('numNics'), 1), reference('dagTemplate').outputs.nsg0Id.value, reference('dagTemplate').outputs.nsg1Id.value)]"
@@ -434,7 +390,7 @@
       "apiVersion": "2021-04-01",
       "name": "appTemplate2",
       "dependsOn": [
-        "networkTemplateInt",
+        "networkTemplate",
         "dagTemplate"
       ],
       "properties": {
@@ -463,7 +419,7 @@
             "value": "[variables('appInstanceType')]"
           },
           "subnetId": {
-            "value": "[reference('networkTemplateInt').outputs.subnets.value[0]]"
+            "value": "[reference('networkTemplate').outputs.subnets.value[parameters('numNics')]]"
           },
           "nsgId": {
             "value": "[if(equals(parameters('numNics'), 1), reference('dagTemplate').outputs.nsg0Id.value, reference('dagTemplate').outputs.nsg1Id.value)]"
@@ -684,7 +640,7 @@
             "value": []
           },
           "nic2SubnetId": {
-            "value": "[reference('networkTemplateInt').outputs.subnets.value[0]]"
+            "value": "[reference('networkTemplate').outputs.subnets.value[3]]"
           },
           "nic2NsgId": {
             "value": "[reference('dagTemplate').outputs.nsg2Id.value]"
