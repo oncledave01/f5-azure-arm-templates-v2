@@ -80,7 +80,7 @@
     }
   },
   "variables": {
-    "numNics": "3";
+    "numNics": 3,
     "useAvailabilityZones": false,
     "templateBaseUrl": "https://raw.githubusercontent.com/oncledave01/f5-azure-arm-templates-v2/",
     "artifactLocation": "main/examples/",
@@ -279,58 +279,6 @@
           },
           "instanceName": {
             "value": "[variables('appInstanceName')]"
-          },
-          "instanceType": {
-            "value": "[variables('appInstanceType')]"
-          },
-          "subnetId": {
-            "value": "[reference('networkTemplate').outputs.subnets.value[3]]"
-          },
-          "nsgId": {
-            "value": "[reference('dagTemplate').outputs.nsg1Id.value]"
-          },
-          "appContainerName": {
-            "value": "[parameters('appContainerName')]"
-          },
-          "cloudInitUrl": {
-            "value": "[variables('cloudInitUrl')]"
-          },
-          "tagValues": {
-            "value": "[parameters('tagValues')]"
-          }
-        }
-      }
-    },
-    {
-      "type": "Microsoft.Resources/deployments",
-      "condition": "[parameters('2ndAPPServer')]",
-      "apiVersion": "2021-04-01",
-      "name": "appTemplate2",
-      "dependsOn": [
-        "networkTemplate",
-        "dagTemplate"
-      ],
-      "properties": {
-        "mode": "Incremental",
-        "templateLink": {
-          "uri": "[concat(variables('templateBaseUrl'), variables('artifactLocation'), 'modules/application/application.json')]",
-          "contentVersion": "[variables('contentVersion')]"
-        },
-        "parameters": {
-          "adminUsername": {
-            "value": "[variables('adminUsername')]"
-          },
-          "adminPassword": {
-            "value": "[variables('adminPassword')]"
-          },
-          "sshKey": {
-            "value": "[parameters('sshKey')]"
-          },
-          "createAutoscaleGroup": {
-            "value": "[variables('createAutoscaleGroup')]"
-          },
-          "instanceName": {
-            "value": "[concat(variables('appInstanceName'), '02')]"
           },
           "instanceType": {
             "value": "[variables('appInstanceType')]"
