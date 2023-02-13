@@ -30,13 +30,6 @@
         "description": "Lab number"
       }
     },
-    "bigIpInstanceType": {
-      "defaultValue": "Standard_DS3_v2",
-      "metadata": {
-        "description": "Enter valid instance type."
-      },
-      "type": "string"
-    },
     "sshKey": {
       "defaultValue": "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABgQC5TSdgJ1hPsy9pnxFkwWp4ZDSFE0CuzzfyLUCHBFv61GeMXzNDCixn9U4HGxyTMOMnJETxKt4NTElZ82XNXFroFWJp7enrAVyRkgCa4BPilvQ++cqkMjmujXRo89va+SnQpuzC3Eb4n7FTv9lbEjqTlO6H+mouovfSJ4UEAJkOjhbjLzFPbwJjwvoJ3BJxljJwyGfDuhycWCojN9zF5zv7Hhp3sWLtrc1NU1N3w+i+CYHYOi7mkZmQRhh7zE9uS23U/yLttkfEnZtsml/6k/SG/qGX8rqLnVtOjCkGrghKf0XAQ+fENwBho5U8wUdzZ2DIcPTBmXPjMZoLhm2J2qC/HEDQIHlAbaHqzc+0GkSFD2KyJOIOrjbVErkGO1+A3NZnN9/C3RlAnpM+a2HxmIxNZ+U+Yf2R4somQGdtpDxfFEyjkwlCD50RF4IOzKaWgzL9eU13/T117xZD1j2kIPBxRSug+ipKRjDJuGiLsoNlepZtIv1UEFABbMaUovj/9Z8= admin@MBP-Dave.rd-services.eu",
       "metadata": {
