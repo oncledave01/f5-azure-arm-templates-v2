@@ -307,7 +307,7 @@
       "condition": "[not(parameters('provisionPublicIp'))]",
       "name": "bastionTemplate",
       "dependsOn": [
-        "bigIpTemplate"
+        "PaloTemplate"
       ],
       "properties": {
         "mode": "Incremental",
