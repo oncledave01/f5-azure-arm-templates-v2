@@ -67,14 +67,14 @@
     "PaloRuntimeInitConfig": {
       "defaultValue": "",
       "metadata": {
-        "description": "Supply a URL to the palo-runtime-init configuration file in YAML or JSON format, or an escaped JSON string to use for f5-bigip-runtime-init configuration."
+        "description": "Supply a URL to the palo-runtime-init configuration file in YAML or JSON format, or an escaped JSON string to use for Palo-runtime-init configuration."
       },
       "type": "string"
     },
     "PaloRuntimeInitPackageUrl": {
       "defaultValue": "",
       "metadata": {
-        "description": "Supply a URL to the palo-runtime-init configuration file in YAML or JSON format, or an escaped JSON string to use for f5-bigip-runtime-init configuration."
+        "description": "Supply a URL to the palo-runtime-init configuration file in YAML or JSON format, or an escaped JSON string to use for Palo-runtime-init configuration."
       },
       "type": "string"
     }
@@ -423,10 +423,10 @@
           "roleDefinitionId": {
             "value": ""
           },
-          "bigIpRuntimeInitPackageUrl": {
+          "PaloRuntimeInitPackageUrl": {
             "value": "[parameters('PaloRuntimeInitPackageUrl')]"
           },
-          "bigIpRuntimeInitConfig": {
+          "PaloRuntimeInitConfig": {
             "value": "[parameters('PaloRuntimeInitConfig')]"
           },
           "sshKey": {
