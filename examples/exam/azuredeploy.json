@@ -657,10 +657,10 @@
           "roleDefinitionId": {
             "value": ""
           },
-          "bigIpRuntimeInitPackageUrl": {
+          "paloRuntimeInitPackageUrl": {
             "value": "[parameters('PaloRuntimeInitPackageUrl')]"
           },
-          "bigIpRuntimeInitConfig": {
+          "paloRuntimeInitConfig": {
             "value": "[parameters('PaloRuntimeInitConfig')]"
           },
           "sshKey": {
