@@ -1,0 +1,63 @@
+{
+    "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentTemplate.json#",
+    "contentVersion": "1.0.0.0",
+    "parameters": {
+        "GW_Internal": {
+            "type": "string",
+            "defaultValue": "Palo",
+            "allowedValues": [
+              "Palo",
+              "F5",
+              "Forti",
+              "AWS"
+            ],
+            "metadata": {
+              "description": "Default Gateway on Internal subnet"
+            }
+		}
+    },
+    "variables": {
+        "nextHopIpAddress": "[if(equals(parameters('GW_Internal'),'Palo'),'10.0.2.4',  if(equals(parameters('GW_Internal'),'F5'),'10.0.2.5',  if(equals(parameters('GW_Internal'),'Forti'),'10.0.2.6',  '10.0.2.1'  )  )  )]"
+    },
+    "resources": [
+        {
+            "type": "Microsoft.Network/routeTables",
+            "apiVersion": "2022-07-01",
+            "name": "Trust",
+            "location": "eastus",
+            "dependsOn": [
+                "[resourceId('Microsoft.Network/routeTables/routes', 'Trust', 'default')]"
+            ],
+            "properties": {
+                "disableBgpRoutePropagation": true,
+                "routes": [
+                    {
+                        "name": "default",
+                        "id": "[resourceId('Microsoft.Network/routeTables/routes', 'Trust', 'default')]",
+                        "properties": {
+                            "addressPrefix": "0.0.0.0/0",
+                            "nextHopType": "VirtualAppliance",
+                            "nextHopIpAddress": "[variables('nextHopIpAddress')]",
+                            "hasBgpOverride": false
+                        },
+                        "type": "Microsoft.Network/routeTables/routes"
+                    }
+                ]
+            }
+        },
+        {
+            "type": "Microsoft.Network/routeTables/routes",
+            "apiVersion": "2022-07-01",
+            "name": "[concat('Trust', '/default')]",
+            "dependsOn": [
+                "[resourceId('Microsoft.Network/routeTables', 'Trust')]"
+            ],
+            "properties": {
+                "addressPrefix": "0.0.0.0/0",
+                "nextHopType": "VirtualAppliance",
+                "nextHopIpAddress": "10.1.2.4",
+                "hasBgpOverride": false
+            }
+        }
+    ]
+}

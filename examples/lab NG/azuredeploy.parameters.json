@@ -1,0 +1,39 @@
+{
+  "$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentParameters.json#",
+  "contentVersion": "1.4.0.0",
+  "parameters": {
+		"GW_Internal": {
+			"value": "Palo"
+		},
+    "Palo": {
+      "value": true
+    },
+    "PaloPosition": {
+      "value": "Ext2Int"
+    },
+    "F5": {
+      "value": true
+    },
+    "F5Position": {
+      "value": "Ext2Int"
+    },
+    "Forti": {
+      "value": true
+    },
+    "FortiPosition": {
+      "value": "Ext2Int"
+    },
+    "APP1": {
+      "value": true
+    },
+    "APP2": {
+      "value": false
+    },
+    "APP1Docker": {
+      "value": ""
+    },
+    "APP2Docker": {
+      "value": ""
+    }
+  }
+}
