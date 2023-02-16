@@ -86,9 +86,6 @@
         },
         {
             "apiVersion": "2022-07-01",
-            "dependsOn": [
-                "[resourceId('Microsoft.Network/routeTables', 'routeTable-subnet3')]"
-            ],
             "name": "[concat('routeTable-subnet3', '/default')]",
             "properties": {
                 "addressPrefix": "0.0.0.0/0",
