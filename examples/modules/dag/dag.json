@@ -334,8 +334,8 @@
                 "name": "allow_loadBalancer_traffic",
                 "properties": {
                     "access": "Allow",
-                    "description": "Outbound traffic through load balancer",
-                    "destinationAddressPrefix": "AzureLoadBalancer",
+                    "description": "Outbound traffic",
+                    "destinationAddressPrefix": "*",
                     "destinationPortRange": "*",
                     "direction": "Outbound",
                     "priority": 200,
