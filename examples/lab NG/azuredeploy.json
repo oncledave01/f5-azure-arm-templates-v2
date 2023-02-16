@@ -105,21 +105,11 @@
     }
   },
   "variables": {
-    "numNics": 2,
-    "numSubnets": 4,
-    "useAvailabilityZones": false,
     "templateBaseUrl": "https://raw.githubusercontent.com/oncledave01/f5-azure-arm-templates-v2/",
     "artifactLocation": "main/examples/",
-	"PaloRuntimeInitConfig": "https://raw.githubusercontent.com/oncledave01/f5-azure-arm-templates-v2/main/examples/LAB%20NG/configs/Palo/init-cfg.txt",
-	"PaloRuntimeInitPackageUrl": "https://raw.githubusercontent.com/oncledave01/f5-azure-arm-templates-v2/main/examples/LAB%20NG/configs/Palo/init-package.txt",
-    "restrictedSrcAddressMgmt": "*",
-    "restrictedSrcAddressApp": "*",
     "contentVersion": "[deployment().properties.template.contentVersion]",
-    "uniqueString": "rds",
-    "adminUsername": "[string('azureuser')]",
-    "adminPassword": "[string('sports-lionize-DOCTRINE1')]",
     "vnetName": "[concat(variables('uniqueString'), '-vnet')]",
-    "vnetAddressPrefix": "10.0",
+    "vnetAddressPrefix": "10.0"
   },
   "resources": [
     {
@@ -134,7 +124,7 @@
         },
         "parameters": {
           "numSubnets": {
-            "value": "[variables('numSubnets')]"
+            "value": 4
           },
           "vnetName": {
             "value": "[variables('vnetName')]"
