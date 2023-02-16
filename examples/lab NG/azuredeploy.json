@@ -146,7 +146,7 @@
             "value": false
           },
           "tagValues": {
-            "value": "[variables('tagValues')]"
+            "value": ""
           }
         }
       }
