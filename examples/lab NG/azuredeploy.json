@@ -117,9 +117,6 @@
             "properties": {
                 "mode": "Incremental",
                 "parameters": {
-                    "createNatGateway": {
-                        "value": false
-                    },
                     "GW_Internal": {
                         "value": "[parameters('GW_Internal')]"
                     },
