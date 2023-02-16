@@ -177,9 +177,118 @@
                 }
             },
             "type": "Microsoft.Resources/deployments"
+        },
+        {
+            "apiVersion": "2021-04-01",
+            "condition": "[parameters('APP1')]",
+            "dependsOn": [
+                "networkTemplate",
+                "dagTemplate"
+            ],
+            "name": "appTemplate",
+            "properties": {
+                "mode": "Incremental",
+                "parameters": {
+                    "adminPassword": {
+                        "value": "[variables('adminPassword')]"
+                    },
+                    "adminUsername": {
+                        "value": "[variables('adminUsername')]"
+                    },
+                    "appContainerName": {
+                        "value": "[parameters('APP1Docker')]"
+                    },
+                    "cloudInitUrl": {
+                        "value": "[variables('APP1cloudInitUrl')]"
+                    },
+                    "createAutoscaleGroup": {
+                        "value": false
+                    },
+                    "instanceName": {
+                        "value": "APP1"
+                    },
+                    "instanceType": {
+                        "value": "[variables('appInstanceType')]"
+                    },
+                    "nsgId": {
+                        "value": "[reference('dagTemplate').outputs.nsg1Id.value]"
+                    },
+                    "sshKey": {
+                        "value": "[variables('sshKey')]"
+                    },
+                    "subnetId": {
+                        "value": "[reference('networkTemplate').outputs.subnets.value[3]]"
+                    },
+                    "tagValues": {
+                        "value": "[variables('tagValues')]"
+                    }
+                },
+                "templateLink": {
+                    "contentVersion": "[variables('contentVersion')]",
+                    "uri": "[concat(variables('templateBaseUrl'), variables('artifactLocation'), 'modules/application/application.json')]"
+                }
+            },
+            "type": "Microsoft.Resources/deployments"
+        },
+        {
+            "apiVersion": "2021-04-01",
+            "condition": "[parameters('APP2')]",
+            "dependsOn": [
+                "networkTemplate",
+                "dagTemplate"
+            ],
+            "name": "appTemplate",
+            "properties": {
+                "mode": "Incremental",
+                "parameters": {
+                    "adminPassword": {
+                        "value": "[variables('adminPassword')]"
+                    },
+                    "adminUsername": {
+                        "value": "[variables('adminUsername')]"
+                    },
+                    "appContainerName": {
+                        "value": "[parameters('APP2Docker')]"
+                    },
+                    "cloudInitUrl": {
+                        "value": "[variables('APP2cloudInitUrl')]"
+                    },
+                    "createAutoscaleGroup": {
+                        "value": false
+                    },
+                    "instanceName": {
+                        "value": "APP2"
+                    },
+                    "instanceType": {
+                        "value": "[variables('appInstanceType')]"
+                    },
+                    "nsgId": {
+                        "value": "[reference('dagTemplate').outputs.nsg1Id.value]"
+                    },
+                    "sshKey": {
+                        "value": "[variables('sshKey')]"
+                    },
+                    "subnetId": {
+                        "value": "[reference('networkTemplate').outputs.subnets.value[3]]"
+                    },
+                    "tagValues": {
+                        "value": "[variables('tagValues')]"
+                    }
+                },
+                "templateLink": {
+                    "contentVersion": "[variables('contentVersion')]",
+                    "uri": "[concat(variables('templateBaseUrl'), variables('artifactLocation'), 'modules/application/application.json')]"
+                }
+            },
+            "type": "Microsoft.Resources/deployments"
         }
     ],
     "variables": {
+        "adminPassword": "[string('sports-lionize-DOCTRINE1')]",
+        "adminUsername": "[string('azureuser')]",
+        "APP1cloudInitUrl": "https://raw.githubusercontent.com/oncledave01/f5-azure-arm-templates-v2/main/examples/LAB%20NG/configs/APP1/init-cfg.txt",
+        "APP2cloudInitUrl": "https://raw.githubusercontent.com/oncledave01/f5-azure-arm-templates-v2/main/examples/LAB%20NG/configs/APP2/init-cfg.txt",
+        "appInstanceType": "Standard_D2s_v3",
         "artifactLocation": "main/examples/",
         "contentVersion": "[deployment().properties.template.contentVersion]",
         "mgmtNsgRulesArray": [
@@ -231,6 +340,7 @@
                 "sourceAddressPrefix": "10.0.0.0/8"
             }
         ],
+        "sshKey": "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABgQC5TSdgJ1hPsy9pnxFkwWp4ZDSFE0CuzzfyLUCHBFv61GeMXzNDCixn9U4HGxyTMOMnJETxKt4NTElZ82XNXFroFWJp7enrAVyRkgCa4BPilvQ++cqkMjmujXRo89va+SnQpuzC3Eb4n7FTv9lbEjqTlO6H+mouovfSJ4UEAJkOjhbjLzFPbwJjwvoJ3BJxljJwyGfDuhycWCojN9zF5zv7Hhp3sWLtrc1NU1N3w+i+CYHYOi7mkZmQRhh7zE9uS23U/yLttkfEnZtsml/6k/SG/qGX8rqLnVtOjCkGrghKf0XAQ+fENwBho5U8wUdzZ2DIcPTBmXPjMZoLhm2J2qC/HEDQIHlAbaHqzc+0GkSFD2KyJOIOrjbVErkGO1+A3NZnN9/C3RlAnpM+a2HxmIxNZ+U+Yf2R4somQGdtpDxfFEyjkwlCD50RF4IOzKaWgzL9eU13/T117xZD1j2kIPBxRSug+ipKRjDJuGiLsoNlepZtIv1UEFABbMaUovj/9Z8= admin@MBP-Dave.rd-services.eu",
         "tagValues": {
             "application": "APP",
             "cost": "COST",
