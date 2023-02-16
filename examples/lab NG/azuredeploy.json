@@ -131,11 +131,14 @@
                     },
                     "vnetName": {
                         "value": "[variables('vnetName')]"
+                    },
+                    "GW_Internal": {
+                        "value": "Palo",
                     }
                 },
                 "templateLink": {
                     "contentVersion": "[variables('contentVersion')]",
-                    "uri": "[concat(variables('templateBaseUrl'), variables('artifactLocation'), 'modules/network/network.json')]"
+                    "uri": "[concat(variables('templateBaseUrl'), variables('artifactLocation'), 'modules/network/network-ng.json')]"
                 }
             },
             "type": "Microsoft.Resources/deployments"
