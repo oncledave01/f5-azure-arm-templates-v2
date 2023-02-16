@@ -1,159 +1,159 @@
 {
-  "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentTemplate.json#",
-  "contentVersion": "1.4.0.0",
-  "parameters": {
-      "GW_Internal": {
-      "type": "string",
-      "defaultValue": "Palo",
-      "allowedValues": [
-        "Palo",
-        "F5",
-        "Forti",
-        "AWS"
-      ],
-      "metadata": {
-        "description": "Default Gateway on Internal subnet"
-      }
-		},
-    "Palo": {
-      "type": "bool",
-      "defaultValue": true,
-      "metadata": {
-        "description": "Provision Palo Alto NGFW"
-      }
-    },
-    "PaloPosition": {
-      "type": "string",
-      "defaultValue": "Ext2Int",
-      "allowedValues": [
-        "Ext2Int",
-        "Ext2DMZ",
-        "DMZ2Int"
-      ],
-      "metadata": {
-        "description": "Palo Alto NGFW Position"
-      }
-    },
-    "F5": {
-      "type": "bool",
-      "defaultValue": true,
-      "metadata": {
-        "description": "Provision F5 LB"
-      }
-    },
-    "F5Position": {
-      "type": "string",
-      "defaultValue": "Ext2Int",
-      "allowedValues": [
-        "Ext2Int",
-        "Ext2DMZ",
-        "DMZ2Int"
-      ],
-      "metadata": {
-        "description": "F5 Position"
-      }
-    },
-    "Forti": {
-      "type": "bool",
-      "defaultValue": true,
-      "metadata": {
-        "description": "Provision "
-      }
-    },
-    "FortiPosition": {
-      "type": "string",
-      "defaultValue": "Ext2Int",
-      "allowedValues": [
-        "Ext2Int",
-        "Ext2DMZ",
-        "DMZ2Int"
-      ],
-      "metadata": {
-        "description": "Fortinet Proxy Position"
-      }
-    },
-    "APP1": {
-      "type": "bool",
-      "defaultValue": true,
-      "metadata": {
-        "description": "Provision App Server 1"
-      }
-    },
-    "APP1Docker": {
-      "type": "string",
-      "defaultValue": "",
-      "allowedValues": [
-        "",
-        "karthequian/gruyere:latest",
-        "owasp/security-shepherd:latest"
-      ],
-      "metadata": {
-        "description": "Provision docker on App Server 1"
-      }
-    },
-    "APP2Docker": {
-      "type": "string",
-      "defaultValue": "",
-      "allowedValues": [
-        "",
-        "karthequian/gruyere:latest",
-        "owasp/security-shepherd:latest"
-      ],
-      "metadata": {
-        "description": "Provision docker on App Server 2"
-      }
-    }
-  },
-  "variables": {
-    "uniqueString": "rds",
-    "templateBaseUrl": "https://raw.githubusercontent.com/oncledave01/f5-azure-arm-templates-v2/",
-    "artifactLocation": "main/examples/",
-    "contentVersion": "[deployment().properties.template.contentVersion]",
-    "vnetName": "[concat(variables('uniqueString'), '-vnet')]",
-    "vnetAddressPrefix": "10.0",
-    "tagValues": {
-      "application": "APP",
-      "cost": "COST",
-      "environment": "ENV",
-      "group": "GROUP",
-      "owner": "OWNER"
-    }
-  },
-  "resources": [
-    {
-      "type": "Microsoft.Resources/deployments",
-      "apiVersion": "2021-04-01",
-      "name": "networkTemplate",
-      "properties": {
-        "mode": "Incremental",
-        "templateLink": {
-          "uri": "[concat(variables('templateBaseUrl'), variables('artifactLocation'), 'modules/network/network.json')]",
-          "contentVersion": "[variables('contentVersion')]"
-        },
-        "parameters": {
-          "numSubnets": {
-            "value": 4
-          },
-          "vnetName": {
-            "value": "[variables('vnetName')]"
-          },
-          "vnetAddressPrefix": {
-            "value": "[variables('vnetAddressPrefix')]"
-          },
-          "createNatGateway": {
-            "value": false
-          },
-          "tagValues": {
-            "value": "[variables('tagValues')]"
-          }
+    "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentTemplate.json#",
+    "contentVersion": "1.4.0.0",
+    "outputs": {
+        "virtualNetworkId": {
+            "type": "string",
+            "value": "[reference('networkTemplate').outputs.virtualNetwork.value]"
         }
-      }
+    },
+    "parameters": {
+        "APP1": {
+            "defaultValue": true,
+            "metadata": {
+                "description": "Provision App Server 1"
+            },
+            "type": "bool"
+        },
+        "APP1Docker": {
+            "allowedValues": [
+                "",
+                "karthequian/gruyere:latest",
+                "owasp/security-shepherd:latest"
+            ],
+            "defaultValue": "",
+            "metadata": {
+                "description": "Provision docker on App Server 1"
+            },
+            "type": "string"
+        },
+        "APP2Docker": {
+            "allowedValues": [
+                "",
+                "karthequian/gruyere:latest",
+                "owasp/security-shepherd:latest"
+            ],
+            "defaultValue": "",
+            "metadata": {
+                "description": "Provision docker on App Server 2"
+            },
+            "type": "string"
+        },
+        "F5": {
+            "defaultValue": true,
+            "metadata": {
+                "description": "Provision F5 LB"
+            },
+            "type": "bool"
+        },
+        "F5Position": {
+            "allowedValues": [
+                "Ext2Int",
+                "Ext2DMZ",
+                "DMZ2Int"
+            ],
+            "defaultValue": "Ext2Int",
+            "metadata": {
+                "description": "F5 Position"
+            },
+            "type": "string"
+        },
+        "Forti": {
+            "defaultValue": true,
+            "metadata": {
+                "description": "Provision "
+            },
+            "type": "bool"
+        },
+        "FortiPosition": {
+            "allowedValues": [
+                "Ext2Int",
+                "Ext2DMZ",
+                "DMZ2Int"
+            ],
+            "defaultValue": "Ext2Int",
+            "metadata": {
+                "description": "Fortinet Proxy Position"
+            },
+            "type": "string"
+        },
+        "GW_Internal": {
+            "allowedValues": [
+                "Palo",
+                "F5",
+                "Forti",
+                "AWS"
+            ],
+            "defaultValue": "Palo",
+            "metadata": {
+                "description": "Default Gateway on Internal subnet"
+            },
+            "type": "string"
+        },
+        "Palo": {
+            "defaultValue": true,
+            "metadata": {
+                "description": "Provision Palo Alto NGFW"
+            },
+            "type": "bool"
+        },
+        "PaloPosition": {
+            "allowedValues": [
+                "Ext2Int",
+                "Ext2DMZ",
+                "DMZ2Int"
+            ],
+            "defaultValue": "Ext2Int",
+            "metadata": {
+                "description": "Palo Alto NGFW Position"
+            },
+            "type": "string"
+        }
+    },
+    "resources": [
+        {
+            "apiVersion": "2021-04-01",
+            "name": "networkTemplate",
+            "properties": {
+                "mode": "Incremental",
+                "parameters": {
+                    "createNatGateway": {
+                        "value": false
+                    },
+                    "numSubnets": {
+                        "value": 4
+                    },
+                    "tagValues": {
+                        "value": "[variables('tagValues')]"
+                    },
+                    "vnetAddressPrefix": {
+                        "value": "[variables('vnetAddressPrefix')]"
+                    },
+                    "vnetName": {
+                        "value": "[variables('vnetName')]"
+                    }
+                },
+                "templateLink": {
+                    "contentVersion": "[variables('contentVersion')]",
+                    "uri": "[concat(variables('templateBaseUrl'), variables('artifactLocation'), 'modules/network/network.json')]"
+                }
+            },
+            "type": "Microsoft.Resources/deployments"
+        }
+    ],
+    "variables": {
+        "artifactLocation": "main/examples/",
+        "contentVersion": "[deployment().properties.template.contentVersion]",
+        "tagValues": {
+            "application": "APP",
+            "cost": "COST",
+            "environment": "ENV",
+            "group": "GROUP",
+            "owner": "OWNER"
+        },
+        "templateBaseUrl": "https://raw.githubusercontent.com/oncledave01/f5-azure-arm-templates-v2/",
+        "uniqueString": "rds",
+        "vnetAddressPrefix": "10.0",
+        "vnetName": "[concat(variables('uniqueString'), '-vnet')]"
     }
-  ],
-  "outputs": {
-    "virtualNetworkId": {
-      "type": "string",
-      "value": "[reference('networkTemplate').outputs.virtualNetwork.value]"
-    }
-  }
 }
