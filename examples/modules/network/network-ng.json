@@ -76,7 +76,7 @@
         {
             "apiVersion": "2020-06-01",
             "copy": {
-                "count": 3,
+                "count": "[parameters('numSubnets')-1]",
                 "name": "routeTableLoop"
             },
             "location": "[resourceGroup().location]",
@@ -87,9 +87,9 @@
         {
             "apiVersion": "2022-07-01",
             "dependsOn": [
-                "[resourceId('Microsoft.Network/routeTables', 'Trust')]"
+                "[resourceId('Microsoft.Network/routeTables', 'routeTable-subnet4')]"
             ],
-            "name": "[concat('Trust', '/default')]",
+            "name": "[concat('routeTable-subnet4', '/default')]",
             "properties": {
                 "addressPrefix": "0.0.0.0/0",
                 "hasBgpOverride": false,
@@ -101,15 +101,15 @@
         {
             "apiVersion": "2020-06-01",
             "dependsOn": [
-                "[resourceId('Microsoft.Network/routeTables/routes', 'Trust', 'default')]"
+                "[resourceId('Microsoft.Network/routeTables/routes', 'routeTable-subnet4', 'default')]"
             ],
             "location": "[resourceGroup().location]",
-            "name": "[concat('routeTable-subnet', 3)]",
+            "name": "routeTable-subnet4",
             "properties": {
                 "disableBgpRoutePropagation": true,
                 "routes": [
                     {
-                        "id": "[resourceId('Microsoft.Network/routeTables/routes', 'Trust', 'default')]",
+                        "id": "[resourceId('Microsoft.Network/routeTables/routes', 'routeTable-subnet4', 'default')]",
                         "name": "default",
                         "properties": {
                             "addressPrefix": "0.0.0.0/0",
