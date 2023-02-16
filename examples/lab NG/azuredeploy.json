@@ -105,6 +105,7 @@
     }
   },
   "variables": {
+    "uniqueString": "rds",
     "templateBaseUrl": "https://raw.githubusercontent.com/oncledave01/f5-azure-arm-templates-v2/",
     "artifactLocation": "main/examples/",
     "contentVersion": "[deployment().properties.template.contentVersion]",
