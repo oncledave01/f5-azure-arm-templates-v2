@@ -157,6 +157,6 @@
                 "name": "constructSubnetArray"
             }
         ],
-        "nextHopIpAddress": "[if(equals(parameters('GW_Internal'),'Palo'),'10.0.2.4',  if(equals(parameters('GW_Internal'),'F5'),'10.0.2.5',  if(equals(parameters('GW_Internal'),'Forti'),'10.0.2.6',  '10.0.2.1'  )  )  )]"
+        "nextHopIpAddress": "[if(equals(parameters('GW_Internal'),'Palo'),'10.0.3.4',  if(equals(parameters('GW_Internal'),'F5'),'10.0.3.5',  if(equals(parameters('GW_Internal'),'Forti'),'10.0.3.6',  '10.0.3.1'  )  )  )]"
     }
 }
