@@ -111,7 +111,7 @@
     "contentVersion": "[deployment().properties.template.contentVersion]",
     "vnetName": "[concat(variables('uniqueString'), '-vnet')]",
     "vnetAddressPrefix": "10.0",
-	"tagValues": {
+    "tagValues": {
       "application": "APP",
       "cost": "COST",
       "environment": "ENV",
