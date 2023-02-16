@@ -345,22 +345,6 @@
                 }
             }
         ],
-        "outboundRuleConfigArray": [
-            {
-                "name": "outboundRuleForInit",
-                "properties": {
-                    "backendAddressPool": {
-                        "id": "[resourceId('Microsoft.Network/loadBalancers/backendAddressPools', parameters('externalLoadBalancerName'), 'loadBalancerMgmtBackEnd')]"
-                    },
-                    "frontendIPConfigurations": [
-                        {
-                            "id": "[resourceId('Microsoft.Network/loadBalancers/frontendIpConfigurations', parameters('externalLoadBalancerName'), 'loadBalancerMgmtFrontEnd')]"
-                        }
-                    ],
-                    "protocol": "All"
-                }
-            }
-        ],
         "uniqueString": "[toLower(parameters('uniqueString'))]"
     }
 }
