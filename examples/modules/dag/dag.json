@@ -176,7 +176,39 @@
         "nsg2Array": "[variables('constructNsg2Array')]",
         "nsg2Id": "[if(greater(variables('nsg2Length'), 0), createArray(resourceId('Microsoft.Network/networkSecurityGroups', variables('nsg2Name'))), variables('emptyArray'))]",
         "nsg2Length": "[length(parameters('nsg2'))]",
-        "nsg2Name": "[concat(variables('uniqueString'), '-nsg2')]",
+        "nsg2Name": "[concat(variables('uniqueString'), '-nsg2')]"
+        "outboundNsgRule": [
+            {
+                "name": "allow_loadBalancer_traffic",
+                "properties": {
+                    "access": "Allow",
+                    "description": "Outbound traffic through load balancer",
+                    "destinationAddressPrefix": "AzureLoadBalancer",
+                    "destinationPortRange": "*",
+                    "direction": "Outbound",
+                    "priority": 200,
+                    "protocol": "Tcp",
+                    "sourceAddressPrefix": "*",
+                    "sourcePortRange": "*"
+                }
+            }
+        ],
+        "outboundRuleConfigArray": [
+            {
+                "name": "outboundRuleForInit",
+                "properties": {
+                    "backendAddressPool": {
+                        "id": "[resourceId('Microsoft.Network/loadBalancers/backendAddressPools', parameters('externalLoadBalancerName'), 'loadBalancerMgmtBackEnd')]"
+                    },
+                    "frontendIPConfigurations": [
+                        {
+                            "id": "[resourceId('Microsoft.Network/loadBalancers/frontendIpConfigurations', parameters('externalLoadBalancerName'), 'loadBalancerMgmtFrontEnd')]"
+                        }
+                    ],
+                    "protocol": "All"
+                }
+            }
+        ]
     },
     "resources": [
         {
