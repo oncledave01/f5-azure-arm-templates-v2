@@ -27,6 +27,13 @@
             },
             "type": "string"
         },
+        "APP2": {
+            "defaultValue": false,
+            "metadata": {
+                "description": "Provision App Server 2"
+            },
+            "type": "bool"
+        },
         "APP2Docker": {
             "allowedValues": [
                 "",
