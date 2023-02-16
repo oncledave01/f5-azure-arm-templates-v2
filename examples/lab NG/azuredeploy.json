@@ -120,6 +120,9 @@
                     "createNatGateway": {
                         "value": false
                     },
+                    "GW_Internal": {
+                        "value": "[parameters('GW_Internal')]"
+                    },
                     "numSubnets": {
                         "value": 4
                     },
@@ -131,9 +134,6 @@
                     },
                     "vnetName": {
                         "value": "[variables('vnetName')]"
-                    },
-                    "GW_Internal": {
-                        "value": "Palo",
                     }
                 },
                 "templateLink": {
