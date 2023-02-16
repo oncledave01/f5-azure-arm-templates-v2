@@ -1,59 +1,125 @@
 {
     "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentTemplate.json#",
     "contentVersion": "1.4.0.0",
-    "parameters": {
-        "uniqueString": {
-            "metadata": {
-                "description": "REQUIRED - A prefix that will be used to name template resources. Because some resources require globally unique names, we recommend using a unique value."
+    "outputs": {
+        "externalIpDns": {
+            "condition": "[greater(parameters('numberPublicExternalIpAddresses'), 0)]",
+            "copy": {
+                "count": "[parameters('numberPublicExternalIPAddresses')]",
+                "input": "[reference(resourceId('Microsoft.Network/publicIPAddresses', concat(variables('uniqueString'), '-app-pip', copyIndex()))).dnsSettings.fqdn]"
             },
-            "type": "string"
+            "type": "array"
         },
+        "externalIpIds": {
+            "condition": "[greater(parameters('numberPublicExternalIpAddresses'), 0)]",
+            "copy": {
+                "count": "[parameters('numberPublicExternalIpAddresses')]",
+                "input": "[resourceId('Microsoft.Network/publicIPAddresses', concat(variables('uniqueString'), '-app-pip', copyIndex()))]"
+            },
+            "type": "array"
+        },
+        "externalIps": {
+            "condition": "[greater(parameters('numberPublicExternalIpAddresses'), 0)]",
+            "copy": {
+                "count": "[parameters('numberPublicExternalIpAddresses')]",
+                "input": "[reference(resourceId('Microsoft.Network/publicIPAddresses', concat(variables('uniqueString'), '-app-pip', copyIndex()))).ipAddress]"
+            },
+            "type": "array"
+        },
+        "mgmtIpIds": {
+            "condition": "[greater(parameters('numberPublicMgmtIpAddresses'), 0)]",
+            "copy": {
+                "count": "[parameters('numberPublicMgmtIpAddresses')]",
+                "input": "[resourceId('Microsoft.Network/publicIPAddresses', concat(variables('uniqueString'), '-mgmt-pip', copyIndex()))]"
+            },
+            "type": "array"
+        },
+        "mgmtIps": {
+            "condition": "[greater(parameters('numberPublicMgmtIpAddresses'), 0)]",
+            "copy": {
+                "count": "[parameters('numberPublicMgmtIpAddresses')]",
+                "input": "[reference(resourceId('Microsoft.Network/publicIPAddresses', concat(variables('uniqueString'), '-mgmt-pip', copyIndex()))).ipAddress]"
+            },
+            "type": "array"
+        },
+        "nsg0Id": {
+            "condition": "[not(empty(parameters('nsg0')))]",
+            "type": "string",
+            "value": "[variables('nsg0Id')[0]]"
+        },
+        "nsg1Id": {
+            "condition": "[not(empty(parameters('nsg1')))]",
+            "type": "string",
+            "value": "[variables('nsg1Id')[0]]"
+        },
+        "nsg2Id": {
+            "condition": "[not(empty(parameters('nsg2')))]",
+            "type": "string",
+            "value": "[variables('nsg2Id')[0]]"
+        },
+        "nsgIds": {
+            "type": "array",
+            "value": "[union(variables('nsg0Id'), variables('nsg1Id'), variables('nsg2Id'))]"
+        }
+    },
+    "parameters": {
         "nsg0": {
             "defaultValue": [
                 {
-                    "destinationPortRanges": ["22","8443"],
-                    "sourceAddressPrefix": "",
-                    "protocol": "Tcp"
+                    "destinationPortRanges": [
+                        "22",
+                        "8443"
+                    ],
+                    "protocol": "Tcp",
+                    "sourceAddressPrefix": ""
                 },
                 {
-                    "destinationPortRanges": ["80","443"],
-                    "sourceAddressPrefix": "",
-                    "protocol": "Tcp"
+                    "destinationPortRanges": [
+                        "80",
+                        "443"
+                    ],
+                    "protocol": "Tcp",
+                    "sourceAddressPrefix": ""
                 }
             ],
-            "type": "array",
             "metadata": {
                 "description": "Valid values include an array containing network security rule property objects, or an empty array. A non-empty array value creates a security group and inbound rules using the destinationPortRanges and sourceAddressPrefix values provided for each object."
-            }
+            },
+            "type": "array"
         },
         "nsg1": {
             "defaultValue": [
                 {
-                    "destinationPortRanges": ["80","443"],
-                    "sourceAddressPrefix": "",
-                    "protocol": "Tcp"
+                    "destinationPortRanges": [
+                        "80",
+                        "443"
+                    ],
+                    "protocol": "Tcp",
+                    "sourceAddressPrefix": ""
                 }
             ],
-            "type": "array",
             "metadata": {
                 "description": "Valid values include an array containing network security rule property objects, or an empty array. A non-empty array value creates a security group and inbound rules using the destinationPortRanges and sourceAddressPrefix values provided for each object."
-            }
+            },
+            "type": "array"
         },
         "nsg2": {
             "defaultValue": [
                 {
-                    "destinationPortRanges": ["80","443"],
-                    "sourceAddressPrefix": "",
-                    "protocol": "Tcp"
+                    "destinationPortRanges": [
+                        "80",
+                        "443"
+                    ],
+                    "protocol": "Tcp",
+                    "sourceAddressPrefix": ""
                 }
             ],
-            "type": "array",
             "metadata": {
                 "description": "Valid values include an array containing network security rule property objects, or an empty array. A non-empty array value creates a security group and inbound rules using the destinationPortRanges and sourceAddressPrefix values provided for each object."
-            }
+            },
+            "type": "array"
         },
         "numberPublicExternalIpAddresses": {
-            "defaultValue": 1,
             "allowedValues": [
                 0,
                 1,
@@ -67,13 +133,13 @@
                 9,
                 10
             ],
+            "defaultValue": 1,
             "metadata": {
                 "description": "Enter the number of public external ip address to create. At least one is required to build ELB."
             },
             "type": "int"
         },
         "numberPublicMgmtIpAddresses": {
-            "defaultValue": 3,
             "allowedValues": [
                 0,
                 1,
@@ -87,6 +153,7 @@
                 9,
                 10
             ],
+            "defaultValue": 3,
             "metadata": {
                 "description": "Enter the number of public mgmt ip addresses to create."
             },
@@ -104,8 +171,93 @@
                 "description": "Default key/value resource tags will be added to the resources in this deployment, if you would like the values to be unique adjust them as needed for each key."
             },
             "type": "object"
+        },
+        "uniqueString": {
+            "metadata": {
+                "description": "REQUIRED - A prefix that will be used to name template resources. Because some resources require globally unique names, we recommend using a unique value."
+            },
+            "type": "string"
         }
     },
+    "resources": [
+        {
+            "apiVersion": "2020-06-01",
+            "condition": "[not(empty(parameters('nsg0')))]",
+            "location": "[resourceGroup().location]",
+            "name": "[variables('nsg0Name')]",
+            "properties": {
+                "securityRules": "[variables('nsg0Array')]"
+            },
+            "tags": "[if(empty(parameters('tagValues')), json('null'), parameters('tagValues'))]",
+            "type": "Microsoft.Network/networkSecurityGroups"
+        },
+        {
+            "apiVersion": "2020-06-01",
+            "condition": "[not(empty(parameters('nsg1')))]",
+            "location": "[resourceGroup().location]",
+            "name": "[variables('nsg1Name')]",
+            "properties": {
+                "securityRules": "[union(variables('nsg1Array'), variables('outboundNsgRule'))]"
+            },
+            "tags": "[if(empty(parameters('tagValues')), json('null'), parameters('tagValues'))]",
+            "type": "Microsoft.Network/networkSecurityGroups"
+        },
+        {
+            "apiVersion": "2020-06-01",
+            "condition": "[not(empty(parameters('nsg2')))]",
+            "location": "[resourceGroup().location]",
+            "name": "[variables('nsg2Name')]",
+            "properties": {
+                "securityRules": "[union(variables('nsg2Array'), variables('outboundNsgRule'))]"
+            },
+            "tags": "[if(empty(parameters('tagValues')), json('null'), parameters('tagValues'))]",
+            "type": "Microsoft.Network/networkSecurityGroups"
+        },
+        {
+            "apiVersion": "2020-06-01",
+            "condition": "[greater(parameters('numberPublicMgmtIpAddresses'), 0)]",
+            "copy": {
+                "count": "[parameters('numberPublicMgmtIpAddresses')]",
+                "name": "mgmtpipcopy"
+            },
+            "location": "[resourceGroup().location]",
+            "name": "[concat(variables('uniqueString'), '-mgmt-pip', copyIndex())]",
+            "properties": {
+                "dnsSettings": {
+                    "domainNameLabel": "[concat(variables('uniqueString'), '-mgmt', copyIndex(0))]"
+                },
+                "idleTimeoutInMinutes": 30,
+                "publicIPAllocationMethod": "Static"
+            },
+            "sku": {
+                "name": "Standard"
+            },
+            "tags": "[if(empty(parameters('tagValues')), json('null'), parameters('tagValues'))]",
+            "type": "Microsoft.Network/publicIPAddresses"
+        },
+        {
+            "apiVersion": "2020-06-01",
+            "condition": "[greater(parameters('numberPublicExternalIpAddresses'), 0)]",
+            "copy": {
+                "count": "[parameters('numberPublicExternalIpAddresses')]",
+                "name": "apppipcopy"
+            },
+            "location": "[resourceGroup().location]",
+            "name": "[concat(variables('uniqueString'), '-app-pip', copyIndex())]",
+            "properties": {
+                "dnsSettings": {
+                    "domainNameLabel": "[concat(variables('uniqueString'), '-app', copyIndex(0))]"
+                },
+                "idleTimeoutInMinutes": 30,
+                "publicIPAllocationMethod": "Static"
+            },
+            "sku": {
+                "name": "Standard"
+            },
+            "tags": "[if(empty(parameters('tagValues')), json('null'), parameters('tagValues'))]",
+            "type": "Microsoft.Network/publicIPAddresses"
+        }
+    ],
     "variables": {
         "copy": [
             {
@@ -163,8 +315,8 @@
                 "name": "constructNsg2Array"
             }
         ],
-        "uniqueString": "[toLower(parameters('uniqueString'))]",
-        "emptyArray": [],
+        "emptyArray": [
+        ],
         "nsg0Array": "[variables('constructNsg0Array')]",
         "nsg0Id": "[if(greater(variables('nsg0Length'), 0), createArray(resourceId('Microsoft.Network/networkSecurityGroups', variables('nsg0Name'))), variables('emptyArray'))]",
         "nsg0Length": "[length(parameters('nsg0'))]",
@@ -176,7 +328,7 @@
         "nsg2Array": "[variables('constructNsg2Array')]",
         "nsg2Id": "[if(greater(variables('nsg2Length'), 0), createArray(resourceId('Microsoft.Network/networkSecurityGroups', variables('nsg2Name'))), variables('emptyArray'))]",
         "nsg2Length": "[length(parameters('nsg2'))]",
-        "nsg2Name": "[concat(variables('uniqueString'), '-nsg2')]"
+        "nsg2Name": "[concat(variables('uniqueString'), '-nsg2')]",
         "outboundNsgRule": [
             {
                 "name": "allow_loadBalancer_traffic",
@@ -208,146 +360,7 @@
                     "protocol": "All"
                 }
             }
-        ]
-    },
-    "resources": [
-        {
-            "type": "Microsoft.Network/networkSecurityGroups",
-            "apiVersion": "2020-06-01",
-            "name": "[variables('nsg0Name')]",
-            "location": "[resourceGroup().location]",
-            "tags": "[if(empty(parameters('tagValues')), json('null'), parameters('tagValues'))]",
-            "properties": {
-                "securityRules": "[variables('nsg0Array')]"
-            },
-            "condition": "[not(empty(parameters('nsg0')))]"
-        },
-        {
-            "type": "Microsoft.Network/networkSecurityGroups",
-            "apiVersion": "2020-06-01",
-            "name": "[variables('nsg1Name')]",
-            "location": "[resourceGroup().location]",
-            "tags": "[if(empty(parameters('tagValues')), json('null'), parameters('tagValues'))]",
-            "properties": {
-                "securityRules": "[union(variables('nsg1Array'), variables('outboundNsgRule'))]"
-            },
-            "condition": "[not(empty(parameters('nsg1')))]"
-        },
-        {
-            "type": "Microsoft.Network/networkSecurityGroups",
-            "apiVersion": "2020-06-01",
-            "name": "[variables('nsg2Name')]",
-            "location": "[resourceGroup().location]",
-            "tags": "[if(empty(parameters('tagValues')), json('null'), parameters('tagValues'))]",
-            "properties": {
-                "securityRules": "[union(variables('nsg2Array'), variables('outboundNsgRule'))]"
-            },
-            "condition": "[not(empty(parameters('nsg2')))]"
-        },
-        {
-            "apiVersion": "2020-06-01",
-            "condition": "[greater(parameters('numberPublicMgmtIpAddresses'), 0)]",
-            "copy": {
-                "count": "[parameters('numberPublicMgmtIpAddresses')]",
-                "name": "mgmtpipcopy"
-            },
-            "location": "[resourceGroup().location]",
-            "name": "[concat(variables('uniqueString'), '-mgmt-pip', copyIndex())]",
-            "properties": {
-                "dnsSettings": {
-                    "domainNameLabel": "[concat(variables('uniqueString'), '-mgmt', copyIndex(0))]"
-                },
-                "idleTimeoutInMinutes": 30,
-                "publicIPAllocationMethod": "Static"
-            },
-            "sku": {
-                "name": "Standard"
-            },
-            "tags": "[if(empty(parameters('tagValues')), json('null'), parameters('tagValues'))]",
-            "type": "Microsoft.Network/publicIPAddresses"
-        },
-        {
-            "apiVersion": "2020-06-01",
-            "condition": "[greater(parameters('numberPublicExternalIpAddresses'), 0)]",
-            "copy": {
-                "count": "[parameters('numberPublicExternalIpAddresses')]",
-                "name": "apppipcopy"
-            },
-            "location": "[resourceGroup().location]",
-            "name": "[concat(variables('uniqueString'), '-app-pip', copyIndex())]",
-            "properties": {
-                "dnsSettings": {
-                    "domainNameLabel": "[concat(variables('uniqueString'), '-app', copyIndex(0))]"
-                },
-                "idleTimeoutInMinutes": 30,
-                "publicIPAllocationMethod": "Static"
-            },
-            "sku": {
-                "name": "Standard"
-            },
-            "tags": "[if(empty(parameters('tagValues')), json('null'), parameters('tagValues'))]",
-            "type": "Microsoft.Network/publicIPAddresses"
-        },
-    ],
-    "outputs": {
-        "externalIpIds": {
-            "condition": "[greater(parameters('numberPublicExternalIpAddresses'), 0)]",
-            "copy": {
-                "count": "[parameters('numberPublicExternalIpAddresses')]",
-                "input": "[resourceId('Microsoft.Network/publicIPAddresses', concat(variables('uniqueString'), '-app-pip', copyIndex()))]"
-            },
-            "type": "array"
-        },
-        "externalIps": {
-            "condition": "[greater(parameters('numberPublicExternalIpAddresses'), 0)]",
-            "copy": {
-                "count": "[parameters('numberPublicExternalIpAddresses')]",
-                "input": "[reference(resourceId('Microsoft.Network/publicIPAddresses', concat(variables('uniqueString'), '-app-pip', copyIndex()))).ipAddress]"
-            },
-            "type": "array"
-        },
-        "externalIpDns": {
-            "condition": "[greater(parameters('numberPublicExternalIpAddresses'), 0)]",
-            "copy": {
-                "count": "[parameters('numberPublicExternalIPAddresses')]",
-                "input": "[reference(resourceId('Microsoft.Network/publicIPAddresses', concat(variables('uniqueString'), '-app-pip', copyIndex()))).dnsSettings.fqdn]"
-            },
-            "type": "array"
-        },
-        "mgmtIpIds": {
-            "condition": "[greater(parameters('numberPublicMgmtIpAddresses'), 0)]",
-            "copy": {
-                "count": "[parameters('numberPublicMgmtIpAddresses')]",
-                "input": "[resourceId('Microsoft.Network/publicIPAddresses', concat(variables('uniqueString'), '-mgmt-pip', copyIndex()))]"
-            },
-            "type": "array"
-        },
-        "mgmtIps": {
-            "condition": "[greater(parameters('numberPublicMgmtIpAddresses'), 0)]",
-            "copy": {
-                "count": "[parameters('numberPublicMgmtIpAddresses')]",
-                "input": "[reference(resourceId('Microsoft.Network/publicIPAddresses', concat(variables('uniqueString'), '-mgmt-pip', copyIndex()))).ipAddress]"
-            },
-            "type": "array"
-        },
-        "nsg0Id": {
-            "condition": "[not(empty(parameters('nsg0')))]",
-            "type": "string",
-            "value": "[variables('nsg0Id')[0]]"
-        },
-        "nsg1Id": {
-            "condition": "[not(empty(parameters('nsg1')))]",
-            "type": "string",
-            "value": "[variables('nsg1Id')[0]]"
-        },
-        "nsg2Id": {
-            "condition": "[not(empty(parameters('nsg2')))]",
-            "type": "string",
-            "value": "[variables('nsg2Id')[0]]"
-        },
-        "nsgIds": {
-            "value": "[union(variables('nsg0Id'), variables('nsg1Id'), variables('nsg2Id'))]",
-            "type": "array"
-        }
+        ],
+        "uniqueString": "[toLower(parameters('uniqueString'))]"
     }
 }
