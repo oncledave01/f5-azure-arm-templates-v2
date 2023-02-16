@@ -76,7 +76,7 @@
         {
             "apiVersion": "2020-06-01",
             "copy": {
-                "count": "[parameters('numSubnets')-1]",
+                "count": 3,
                 "name": "routeTableLoop"
             },
             "location": "[resourceGroup().location]",
@@ -104,7 +104,7 @@
                 "[resourceId('Microsoft.Network/routeTables/routes', 'Trust', 'default')]"
             ],
             "location": "[resourceGroup().location]",
-            "name": "[concat('routeTable-subnet', 4)]",
+            "name": "[concat('routeTable-subnet', 3)]",
             "properties": {
                 "disableBgpRoutePropagation": true,
                 "routes": [
