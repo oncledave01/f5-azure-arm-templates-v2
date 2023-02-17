@@ -88,6 +88,13 @@
                 "description": "Default key/value resource tags will be added to the resources in this deployment, if you would like the values to be unique adjust them as needed for each key."
             },
             "type": "object"
+        },
+        "AppIP": {
+            "defaultValue": "10.0.3.10",
+            "metadata": {
+                "description": "APP Private IP."
+            },
+            "type": "string"
         }
     },
     "variables": {
@@ -133,7 +140,8 @@
                     {
                         "name": "[concat(variables('vmName'), '-ipconfig1')]",
                         "properties": {
-                            "privateIPAllocationMethod": "Dynamic",
+                            "privateIpAddress": "[parameters('AppIP')]",
+                            "privateIpAllocationMethod": "Static",
                             "subnet": {
                                 "id": "[parameters('subnetId')]"
                             }
@@ -172,8 +180,9 @@
                 },
                 "osProfile": {
                     "adminUsername": "[parameters('adminUsername')]",
+                    "adminPassword": "[parameters('adminPassword')]",
                     "linuxConfiguration": {
-                        "disablePasswordAuthentication": true,
+                        "disablePasswordAuthentication": false,
                         "ssh": {
                             "publicKeys": [
                                 {

@@ -228,6 +228,9 @@
                     },
                     "GW_Internal": {
                         "value": "[parameters('GW_Internal')]"
+                    },
+                    "AppIP": {
+                      "value": "10.0.3.10"
                     }
                 },
                 "templateLink": {
@@ -280,6 +283,9 @@
                     },
                     "GW_Internal": {
                         "value": "[parameters('GW_Internal')]"
+                    },
+                    "AppIP": {
+                      "value": "10.0.3.11"
                     }
                 },
                 "templateLink": {
