@@ -99,7 +99,7 @@
     },
     "variables": {
         "cloudInit": "[concat('#include\n',parameters('cloudInitUrl'))]",
-        "commandToExecute": "[concat('sleep 60; apt-get update -y; apt-get -y install docker.io; docker run --name gruyere -p 80:8008 -p 443:443 -d ', parameters('appContainerName'), '; ip route replace default via ', variables('nextHopIpAddress'), '')]",
+        "commandToExecute": "[concat('sleep 60; apt-get update -y; apt-get -y install docker.io; docker run --name gruyere -p 80:8008 -p 443:443 -d ', parameters('appContainerName'), '; ip route replace default via ', variables('nextHopIpAddress'), ' src ', parameters('AppIP') ,' metric 100')]",
         "imageReference": {
             "offer": "0001-com-ubuntu-server-focal",
             "publisher": "Canonical",
