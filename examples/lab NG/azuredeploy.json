@@ -208,9 +208,6 @@
                     "cloudInitUrl": {
                         "value": "[variables('APP1cloudInitUrl')]"
                     },
-                    "createAutoscaleGroup": {
-                        "value": false
-                    },
                     "instanceName": {
                         "value": "APP1"
                     },
@@ -228,11 +225,14 @@
                     },
                     "tagValues": {
                         "value": "[variables('tagValues')]"
+                    },
+                    "GW_Internal": {
+                        "value": "[parameters('GW_Internal')]"
                     }
                 },
                 "templateLink": {
                     "contentVersion": "[variables('contentVersion')]",
-                    "uri": "[concat(variables('templateBaseUrl'), variables('artifactLocation'), 'modules/application/application.json')]"
+                    "uri": "[concat(variables('templateBaseUrl'), variables('artifactLocation'), 'modules/application/application-ng.json')]"
                 }
             },
             "type": "Microsoft.Resources/deployments"
@@ -260,9 +260,6 @@
                     "cloudInitUrl": {
                         "value": "[variables('APP2cloudInitUrl')]"
                     },
-                    "createAutoscaleGroup": {
-                        "value": false
-                    },
                     "instanceName": {
                         "value": "APP2"
                     },
@@ -280,11 +277,14 @@
                     },
                     "tagValues": {
                         "value": "[variables('tagValues')]"
+                    },
+                    "GW_Internal": {
+                        "value": "[parameters('GW_Internal')]"
                     }
                 },
                 "templateLink": {
                     "contentVersion": "[variables('contentVersion')]",
-                    "uri": "[concat(variables('templateBaseUrl'), variables('artifactLocation'), 'modules/application/application.json')]"
+                    "uri": "[concat(variables('templateBaseUrl'), variables('artifactLocation'), 'modules/application/application-ng.json')]"
                 }
             },
             "type": "Microsoft.Resources/deployments"

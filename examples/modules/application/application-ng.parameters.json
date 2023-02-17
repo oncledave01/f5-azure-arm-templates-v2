@@ -1,0 +1,42 @@
+{
+  "$schema": "http://schema.management.azure.com/schemas/2015-01-01/deploymentParameters.json#",
+  "contentVersion": "1.4.0.0",
+  "parameters": {
+    "GW_Internal": {
+        "value": "Palo"
+    },
+    "adminUsername": {
+      "value": "azureuser"
+    },
+    "appContainerName": {
+      "value": "owasp/security-shepherd:latest"
+    },
+    "cloudInitUrl": {
+      "value": ""
+    },
+    "instanceName": {
+      "value": "vm01"
+    },
+    "instanceType": {
+      "value": "Standard_DS3_v2"
+    },
+    "nsgId": {
+      "value": ""
+    },
+    "sshKey": {
+      "value": ""
+    },
+    "subnetId": {
+      "value": ""
+    },
+    "tagValues": {
+      "value": {
+        "application": "APP",
+        "cost": "COST",
+        "environment": "ENV",
+        "group": "GROUP",
+        "owner": "OWNER"
+      }
+    }
+  }
+}
