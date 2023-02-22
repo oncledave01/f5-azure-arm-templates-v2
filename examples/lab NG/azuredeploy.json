@@ -299,8 +299,8 @@
     "variables": {
         "adminPassword": "[string('sports-lionize-DOCTRINE1')]",
         "adminUsername": "[string('azureuser')]",
-        "APP1cloudInitUrl": "https://raw.githubusercontent.com/oncledave01/f5-azure-arm-templates-v2/main/examples/LAB%20NG/configs/APP1/init-cfg.txt",
-        "APP2cloudInitUrl": "https://raw.githubusercontent.com/oncledave01/f5-azure-arm-templates-v2/main/examples/LAB%20NG/configs/APP2/init-cfg.txt",
+        "APP1cloudInitUrl": "https://raw.githubusercontent.com/oncledave01/f5-azure-arm-templates-v2/main/examples/lab%20NG/configs/APP1/init-cfg.txt",
+        "APP2cloudInitUrl": "https://raw.githubusercontent.com/oncledave01/f5-azure-arm-templates-v2/main/examples/lab%20NG/configs/APP2/init-cfg.txt",
         "appInstanceType": "Standard_D2s_v3",
         "artifactLocation": "main/examples/",
         "contentVersion": "[deployment().properties.template.contentVersion]",
