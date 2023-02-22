@@ -7,7 +7,7 @@ runcmd:
   - apt-get update -y
   - apt-get -y install docker.io
   - docker run --name f5demo -p 80:8008 -p 443:443 -d karthequian/gruyere:latest
-  - ip route replace default via 10.0.3.4 src 10.0.3.10 metric 100
+  #- ip route replace default via 10.0.3.4 src 10.0.3.10 metric 100
 
 
 network:

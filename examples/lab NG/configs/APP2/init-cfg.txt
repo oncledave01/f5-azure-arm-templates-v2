@@ -4,9 +4,9 @@ package_update: true
 package_upgrade: true
 
 #runcmd:
-#  - apt-get update -y
-#  - apt-get -y install docker.io
-#  - docker run --name f5demo -p 80:8008 -p 443:443 -d karthequian/gruyere:latest
+  - apt-get update -y
+  - apt-get -y install docker.io
+  - docker run --name f5demo -p 80:8008 -p 443:443 -d karthequian/gruyere:latest
   #f5devcentral/f5-demo-app:latest
 
 network:
