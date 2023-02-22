@@ -295,6 +295,7 @@
                 "networkTemplate",
                 "dagTemplate"
             ],
+            "condition": "[parameters('Palo')]",
             "name": "PaloTemplate",
             "properties": {
                 "mode": "Incremental",
