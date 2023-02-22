@@ -29,12 +29,6 @@
             },
             "type": "string"
         },
-        "sshKey": {
-            "metadata": {
-                "description": "REQUIRED - Supply the public key that will be used for SSH authentication to the BIG-IP and application virtual machines."
-            },
-            "type": "string"
-        },
         "instanceName": {
             "defaultValue": "vm01",
             "metadata": {
@@ -183,14 +177,6 @@
                     "adminPassword": "[parameters('adminPassword')]",
                     "linuxConfiguration": {
                         "disablePasswordAuthentication": false,
-                        "ssh": {
-                            "publicKeys": [
-                                {
-                                    "keyData": "[parameters('sshKey')]",
-                                    "path": "[concat('/home/', parameters('adminUsername'), '/.ssh/authorized_keys')]"
-                                }
-                            ]
-                        }
                     },
                     "computerName": "[variables('vmName')]",
                     "customData": "[base64(variables('cloudInit'))]"
