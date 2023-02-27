@@ -334,7 +334,7 @@
                         "value": "[if(contains(parameters('PaloPosition'),'Ext2'),'10.0.1.4','10.0.2.4')]"
                     },
                     "nic1ServiceIPs": {
-                        "value": "[if(contains(parameters('PaloPosition'),'Ext2'),array(concat('{\"privateIpAddress\": \"', variables('nic1ServiceIP1'), '\",\"publicIpId\": \"', reference('dagTemplate').outputs.externalIpIds.value[0], '\"}')),array('null'))]"
+                        "value": ""
                     },
                     "nic1SubnetId": {
                         "value": "[if(contains(parameters('PaloPosition'),'Ext2'),reference('networkTemplate').outputs.subnets.value[1],reference('networkTemplate').outputs.subnets.value[2])]"
