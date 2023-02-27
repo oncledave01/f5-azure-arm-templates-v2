@@ -334,10 +334,10 @@
                         "value": "[if(contains(parameters('F5Position'),'Ext2'),'10.0.1.4','10.0.2.4')]"
                     },
                     "nic1ServiceIPs": {
-                        "value": "[if(contains(parameters('F5Position'),'Ext2'),variables('nic1ServiceIPs'),json('null'))]"
+                        "value": "[if(contains(parameters('F5Position'),'Ext2'),json(concat('{\"privateIpAddress\": \"', variables('nic1ServiceIP1'), '\",\"publicIpId\": \"', reference('dagTemplate').outputs.externalIpIds.value[1], '\"}')),json('null'))]"
                     },
                     "nic1SubnetId": {
-                        "value": "[if(contains(parameters('F5Position'),'Ext2'),reference('networkTemplate').outputs.subnets.value[1],,reference('networkTemplate').outputs.subnets.value[2])]"
+                        "value": "[if(contains(parameters('F5Position'),'Ext2'),reference('networkTemplate').outputs.subnets.value[1],reference('networkTemplate').outputs.subnets.value[2])]"
                     },
                     "nic2NsgId": {
                         "value": "[reference('dagTemplate').outputs.nsg2Id.value]"
@@ -353,7 +353,7 @@
                         ]
                     },
                     "nic2SubnetId": {
-                        "value": "[if(contains(parameters('F5Position'),'2Int'),reference('networkTemplate').outputs.subnets.value[3],,reference('networkTemplate').outputs.subnets.value[2])]"
+                        "value": "[if(contains(parameters('F5Position'),'2Int'),reference('networkTemplate').outputs.subnets.value[3],reference('networkTemplate').outputs.subnets.value[2])]"
                     },
                     "PaloRuntimeInitConfig": {
                         "value": "[variables('PaloRuntimeInitConfig')]"
@@ -413,12 +413,6 @@
         "nic1SelfIpPalo": "10.0.1.4",
         "nic1ServiceIP1": "10.0.1.101",
         "nic2SelfIpPalo": "10.0.2.4",
-        "nic1ServiceIPs": [
-            {
-                "privateIpAddress": "[variables('nic1ServiceIP1')]",
-                "publicIpId": "[reference('dagTemplate').outputs.externalIpIds.value[1]]"
-            }
-        ],
         "nsg0": "[variables('mgmtNsgRulesArray')]",
         "nsg1": "[variables('nsg1RulesArray')]",
         "nsg1RulesArray": [
