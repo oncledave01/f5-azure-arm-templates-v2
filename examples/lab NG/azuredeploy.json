@@ -166,7 +166,7 @@
                         "value": "[variables('nsg2')]"
                     },
                     "numberPublicExternalIpAddresses": {
-                        "value": 1
+                        "value": 2
                     },
                     "numberPublicMgmtIpAddresses": {
                         "value": "[if(parameters('Palo'), if(parameters('F5'), if(parameters('Forti'), 3, 2), if(parameters('Forti'), 2, 1)), if(parameters('F5'), if(parameters('Forti'), 2, 1), if(parameters('Forti'), 1, 0)))]"
@@ -316,7 +316,7 @@
                         "value": "[reference('dagTemplate').outputs.nsg0Id.value]"
                     },
                     "mgmtPublicIpId": {
-                        "value": "[reference('dagTemplate').outputs.mgmtIpIds.value[1]]"
+                        "value": "[reference('dagTemplate').outputs.mgmtIpIds.value[0]]"
                     },
                     "mgmtSelfIp": {
                         "value": "[variables('mgmtSelfIpPalo')]"
