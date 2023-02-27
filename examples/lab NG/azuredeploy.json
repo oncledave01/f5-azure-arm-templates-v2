@@ -349,8 +349,7 @@
                         "value": "[if(contains(parameters('PaloPosition'),'2Int'),'10.0.3.4','10.0.2.4')]"
                     },
                     "nic2ServiceIPs": {
-                        "value": [
-                        ]
+                        "value": []
                     },
                     "nic2SubnetId": {
                         "value": "[if(contains(parameters('PaloPosition'),'2Int'),reference('networkTemplate').outputs.subnets.value[3],reference('networkTemplate').outputs.subnets.value[2])]"
