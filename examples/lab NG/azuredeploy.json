@@ -328,16 +328,16 @@
                         "value": "[reference('dagTemplate').outputs.nsg1Id.value]"
                     },
                     "nic1PrimaryPublicId": {
-                        "value": "[if(contains(parameters('F5Position'),'Ext2'),reference('dagTemplate').outputs.externalIpIds.value[0],'')]"
+                        "value": "[if(contains(parameters('PaloPosition'),'Ext2'),reference('dagTemplate').outputs.externalIpIds.value[0],'')]"
                     },
                     "nic1SelfIp": {
-                        "value": "[if(contains(parameters('F5Position'),'Ext2'),'10.0.1.4','10.0.2.4')]"
+                        "value": "[if(contains(parameters('PaloPosition'),'Ext2'),'10.0.1.4','10.0.2.4')]"
                     },
                     "nic1ServiceIPs": {
-                        "value": "[if(contains(parameters('F5Position'),'Ext2'),json(concat('{\"privateIpAddress\": \"', variables('nic1ServiceIP1'), '\",\"publicIpId\": \"', reference('dagTemplate').outputs.externalIpIds.value[0], '\"}')),json('null'))]"
+                        "value": "[if(contains(parameters('PaloPosition'),'Ext2'),json(concat('{\"privateIpAddress\": \"', variables('nic1ServiceIP1'), '\",\"publicIpId\": \"', reference('dagTemplate').outputs.externalIpIds.value[0], '\"}')),json('null'))]"
                     },
                     "nic1SubnetId": {
-                        "value": "[if(contains(parameters('F5Position'),'Ext2'),reference('networkTemplate').outputs.subnets.value[1],reference('networkTemplate').outputs.subnets.value[2])]"
+                        "value": "[if(contains(parameters('PaloPosition'),'Ext2'),reference('networkTemplate').outputs.subnets.value[1],reference('networkTemplate').outputs.subnets.value[2])]"
                     },
                     "nic2NsgId": {
                         "value": "[reference('dagTemplate').outputs.nsg2Id.value]"
@@ -346,14 +346,14 @@
                         "value": ""
                     },
                     "nic2SelfIp": {
-                        "value": "[if(contains(parameters('F5Position'),'2Int'),'10.0.3.4','10.0.2.4')]"
+                        "value": "[if(contains(parameters('PaloPosition'),'2Int'),'10.0.3.4','10.0.2.4')]"
                     },
                     "nic2ServiceIPs": {
                         "value": [
                         ]
                     },
                     "nic2SubnetId": {
-                        "value": "[if(contains(parameters('F5Position'),'2Int'),reference('networkTemplate').outputs.subnets.value[3],reference('networkTemplate').outputs.subnets.value[2])]"
+                        "value": "[if(contains(parameters('PaloPosition'),'2Int'),reference('networkTemplate').outputs.subnets.value[3],reference('networkTemplate').outputs.subnets.value[2])]"
                     },
                     "PaloRuntimeInitConfig": {
                         "value": "[variables('PaloRuntimeInitConfig')]"
