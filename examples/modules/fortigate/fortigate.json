@@ -379,7 +379,7 @@
           "adminUsername": "[parameters('adminUsername')]",
           "adminPassword": "[parameters('adminPassword')]",
           "computerName": "[parameters('vmName')]",
-					"customData": "[variables('fgaCustomData')]"
+					"customData": "[base64(variables('fgaCustomData'))]"
         },
 				"storageProfile": {
 					"imageReference": {
