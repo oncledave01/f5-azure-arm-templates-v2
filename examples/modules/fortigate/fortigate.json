@@ -311,7 +311,9 @@
       "workspaceId": "[parameters('workspaceId')]",
       "uniqueString": "[parameters('uniqueString')]"
     },
-    "fgaCustomData": "[concat('config system sdn-connector\nedit AzureSDN\nset type azure\nnext\nend\nconfig router static\nedit 1\nset gateway ', variables('sn1GatewayIP'), '\nset device port1\nnext\nedit 2\nset dst ', parameters('vnetAddressPrefix'), '\nset gateway ', variables('sn2GatewayIP'), '\nset device port2\nnext\nend\nconfig system interface\nedit port1\nset mode static\nset ip ',  variables('sn1IPfga'), '/', variables('sn1CIDRmask'), '\nset description external\nset allowaccess ping ssh https\nnext\nedit port2\nset mode static\nset ip ', variables('sn2IPfga'), '/', variables('sn2CIDRmask'), '\nset description internal\nset allowaccess ping ssh https\nnext\nend\n')]",
+    "sn1GatewayIP": "[if(contains(parameters('nic1SelfIp'),'10.0.2.'),'10.0.2.4','10.0.1.1')]",
+    "sn2Gateway": "[if(contains(parameters('nic2SelfIp'),'10.0.2.'),'set dst 10.0.3.0/24\nset gateway 10.0.2.4\n','')]",
+    "fgaCustomData": "[concat('config system sdn-connector\nedit AzureSDN\nset type azure\nnext\nend\nconfig router static\nedit 1\nset gateway ', variables('sn1GatewayIP'), '\nset device port1\nnext\nedit 2\n', variables('sn2Gateway'), 'set device port2\nnext\nend\nconfig system interface\nedit port1\nset mode static\nset ip ',  parameters('nic1SelfIp'), '/24\nset description external\nset allowaccess ping ssh https\nnext\nedit port2\nset mode static\nset ip ', parameters('nic2SelfIp'), '/24\nset description internal\nset allowaccess ping ssh https\nnext\nend\n')]",
   },
   "resources": [
     {
