@@ -12,7 +12,7 @@
       "value": "fortinet:fortinet_fortigate-vm_v5:fortinet_fg-vm_payg_20190624:latest"
     },
     "instanceType": {
-      "value": "Standard_D3_v2"
+      "value": "Standard_DS3_v2"
     },
     "mgmtNsgId": {
       "value": ""

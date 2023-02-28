@@ -466,7 +466,7 @@
                 },
                 "templateLink": {
                     "contentVersion": "[variables('contentVersion')]",
-                    "uri": "https://raw.githubusercontent.com/oncledave01/f5-azure-arm-templates-v2/main/examples/modules/paloalto/palo.json"
+                    "uri": "https://raw.githubusercontent.com/oncledave01/f5-azure-arm-templates-v2/main/examples/modules/fortigate/fortigate.json"
                 }
             },
             "type": "Microsoft.Resources/deployments"
