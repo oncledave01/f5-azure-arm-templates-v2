@@ -396,7 +396,7 @@
                 "dagTemplate"
             ],
             "condition": "[parameters('Forti')]",
-            "name": "=FortiTemplate",
+            "name": "FortiTemplate",
             "properties": {
                 "mode": "Incremental",
                 "parameters": {
