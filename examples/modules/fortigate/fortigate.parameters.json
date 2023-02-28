@@ -1,0 +1,84 @@
+{
+  "$schema": "http://schema.management.azure.com/schemas/2015-01-01/deploymentParameters.json#",
+  "contentVersion": "1.4.0.0",
+  "parameters": {
+    "adminUsername": {
+      "value": "azureuser"
+    },
+    "adminPassword": {
+      "value": "sports-lionize-DOCTRINE1"
+    },
+    "image": {
+      "value": "fortinet:fortinet_fortigate-vm_v5:fortinet_fg-vm_payg_20190624:latest"
+    },
+    "instanceType": {
+      "value": "Standard_D3_v2"
+    },
+    "mgmtNsgId": {
+      "value": ""
+    },
+    "mgmtPublicIpId": {
+      "value": ""
+    },
+    "mgmtSelfIp": {
+      "value": ""
+    },
+    "mgmtSubnetId": {
+      "value": ""
+    },
+    "nic1NsgId": {
+      "value": ""
+    },
+    "nic1PrimaryPublicId": {
+      "value": ""
+    },
+    "nic1SelfIp": {
+      "value": ""
+    },
+    "nic1ServiceIPs": {
+      "value": []
+    },
+    "nic1SubnetId": {
+      "value": ""
+    },
+    "nic2NsgId": {
+      "value": ""
+    },
+    "nic2PrimaryPublicId": {
+      "value": ""
+    },
+    "nic2SelfIp": {
+      "value": ""
+    },
+    "nic2ServiceIPs": {
+      "value": []
+    },
+    "nic2SubnetId": {
+      "value": ""
+    },
+    "roleDefinitionId": {
+      "value": ""
+    },
+    "tagValues": {
+      "value": {
+        "application": "APP",
+        "cost": "COST",
+        "environment": "ENV",
+        "group": "GROUP",
+        "owner": "OWNER"
+      }
+    },
+    "uniqueString": {
+      "value": ""
+    },
+    "userAssignManagedIdentity": {
+      "value": ""
+    },
+    "vmName": {
+      "value": "forti-vm"
+    },
+    "workspaceId": {
+      "value": "WORKSPACE_ID"
+    }
+  }
+}
