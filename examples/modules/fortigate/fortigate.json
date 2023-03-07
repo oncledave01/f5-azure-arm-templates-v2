@@ -283,7 +283,8 @@
     "networkInterfaceName0": "[concat(parameters('uniqueString'), '-nic0')]",
     "networkInterfaceName1": "[concat(parameters('uniqueString'), '-nic1')]",
     "networkInterfaceName2": "[concat(parameters('uniqueString'), '-nic2')]",
-    "networkInterfaces": "[union(createArray(variables('networkInterfacesArray')[0]), if(empty(parameters('nic1SubnetId')), variables('emptyArray'), createArray(variables('networkInterfacesArray')[1])), if(empty(parameters('nic2SubnetId')), variables('emptyArray'), createArray(variables('networkInterfacesArray')[2])))]",
+    //"networkInterfaces": "[union(createArray(variables('networkInterfacesArray')[0]), if(empty(parameters('nic1SubnetId')), variables('emptyArray'), createArray(variables('networkInterfacesArray')[1])), if(empty(parameters('nic2SubnetId')), variables('emptyArray'), createArray(variables('networkInterfacesArray')[2])))]",
+    "networkInterfaces": "[union(createArray(variables('networkInterfacesArray')[0]), if(empty(parameters('nic1SubnetId')), variables('emptyArray'), createArray(variables('networkInterfacesArray')[1])))]",
     "networkInterfacesArray": [
       /*{
         "id": "[resourceId('Microsoft.Network/networkInterfaces', variables('networkInterfaceName0'))]",
