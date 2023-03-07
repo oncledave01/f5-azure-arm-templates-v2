@@ -423,6 +423,10 @@
     "vmId": {
       "type": "string",
       "value": "[reference(resourceId('Microsoft.Compute/virtualMachines', parameters('vmName')),'2019-12-01').vmId]"
+    },
+    "fgaCustomData": {
+      "type": "string",
+      "value": "[variables('fgaCustomData')]"
     }
   }
 }
