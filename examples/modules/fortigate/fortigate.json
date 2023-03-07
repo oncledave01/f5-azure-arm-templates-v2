@@ -285,16 +285,16 @@
     "networkInterfaceName2": "[concat(parameters('uniqueString'), '-nic2')]",
     "networkInterfaces": "[union(createArray(variables('networkInterfacesArray')[0]), if(empty(parameters('nic1SubnetId')), variables('emptyArray'), createArray(variables('networkInterfacesArray')[1])), if(empty(parameters('nic2SubnetId')), variables('emptyArray'), createArray(variables('networkInterfacesArray')[2])))]",
     "networkInterfacesArray": [
-      {
+      /*{
         "id": "[resourceId('Microsoft.Network/networkInterfaces', variables('networkInterfaceName0'))]",
         "properties": {
           "primary": true
         }
-      },
+      },//*/
       {
         "id": "[resourceId('Microsoft.Network/networkInterfaces', variables('networkInterfaceName1'))]",
         "properties": {
-          "primary": false
+          "primary": true //false
         }
       },
       {
@@ -304,8 +304,8 @@
         }
       }
     ],
-    "offerToUse": "fortinet_fortigate-vm_v5",
-    "skuToUse": "fortinet_fg-vm",
+    "offerToUse": "[if(variables('useCustomImage'), 'fortinet_fortigate-vm_v5', variables('image')[1])]",
+    "skuToUse": "[if(variables('useCustomImage'), 'fortinet_fg-vm_payg_20190624', variables('image')[2])]",
     "versionToUse": "[if(variables('useCustomImage'), json('null'), variables('image')[3])]",
     "runtimeInitTag": {
       "workspaceId": "[parameters('workspaceId')]",
@@ -316,7 +316,7 @@
     "fgaCustomData": "[concat('config system sdn-connector\nedit AzureSDN\nset type azure\nnext\nend\nconfig router static\nedit 1\nset gateway ', variables('sn1GatewayIP'), '\nset device port1\nnext\nedit 2\n', variables('sn2Gateway'), 'set device port2\nnext\nend\nconfig system interface\nedit port1\nset mode static\nset ip ',  parameters('nic1SelfIp'), '/24\nset description external\nset allowaccess ping ssh https\nnext\nedit port2\nset mode static\nset ip ', parameters('nic2SelfIp'), '/24\nset description internal\nset allowaccess ping ssh https\nnext\nend\n')]",
   },
   "resources": [
-    {
+    /*{
       "apiVersion": "2020-06-01",
       "location": "[resourceGroup().location]",
       "name": "[variables('networkInterfaceName0')]",
@@ -328,7 +328,7 @@
       },
       "tags": "[if(empty(parameters('tagValues')), json('null'), parameters('tagValues'))]",
       "type": "Microsoft.Network/networkInterfaces"
-    },
+    },//*/
     {
       "apiVersion": "2020-06-01",
       "condition": "[not(empty(parameters('nic1SubnetId')))]",
@@ -360,12 +360,12 @@
     {
       "apiVersion": "2019-12-01",
       "dependsOn": [
-        "[variables('networkInterfaceName0')]",
+        //"[variables('networkInterfaceName0')]",
         "[variables('networkInterfaceName1')]",
         "[variables('networkInterfaceName2')]"
       ],
       "location": "[resourceGroup().location]",
-      "identity": "[if(and(empty(parameters('userAssignManagedIdentity')), empty(parameters('roleDefinitionId'))), json('null'), variables('identity'))]",
+      "identity": "[if(and(empty(parameters('userAssignManagedIdentity')), empty(parameters('roleDefinitionId'))), 'SystemAssigned', variables('identity'))]",
       "name": "[parameters('vmName')]",
       "plan": "[if(variables('useCustomImage'), json('null'), variables('imagePlan'))]",
       "properties": {
