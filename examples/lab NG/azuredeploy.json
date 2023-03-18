@@ -483,7 +483,7 @@
       "properties": {
         "mode": "Incremental",
         "templateLink": {
-          "uri": "https://raw.githubusercontent.com/oncledave01/f5-azure-arm-templates-v2/main/examples/modules/modules/bigip-standalone/bigip.json",
+          "uri": "https://raw.githubusercontent.com/oncledave01/f5-azure-arm-templates-v2/main/examples/modules/bigip-standalone/bigip.json",
           "contentVersion": "[variables('contentVersion')]"
         },
         "parameters": {
