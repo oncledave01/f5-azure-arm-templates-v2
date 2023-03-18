@@ -47,7 +47,7 @@
             "type": "string"
         },
         "F5": {
-            "defaultValue": true,
+            "defaultValue": false,
             "metadata": {
                 "description": "Provision F5 LB"
             },
@@ -66,7 +66,7 @@
             "type": "string"
         },
         "Forti": {
-            "defaultValue": true,
+            "defaultValue": false,
             "metadata": {
                 "description": "Provision "
             },
@@ -98,7 +98,7 @@
             "type": "string"
         },
         "Palo": {
-            "defaultValue": true,
+            "defaultValue": false,
             "metadata": {
                 "description": "Provision Palo Alto NGFW"
             },
