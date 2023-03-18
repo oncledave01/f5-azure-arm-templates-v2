@@ -643,7 +643,7 @@
         "bigIpImage": "f5-networks:f5-big-ip-best:f5-bigip-virtual-edition-25m-best-hourly:16.1.000000",
         "bigIpInstanceType": "Standard_DS3_v2",
         "bigIpRuntimeInitPackageUrl": "https://cdn.f5.com/product/cloudsolutions/f5-bigip-runtime-init/v1.3.2/dist/f5-bigip-runtime-init-1.3.2-1.gz.run",
-        "bigIpRuntimeInitConfig": "https://raw.githubusercontent.com/oncledave01/f5-azure-arm-templates-v2/main/examples/lab%20NG/configs/runtime-init-conf-3nic-payg-gruyere.yaml",
+        "bigIpRuntimeInitConfig": "https://raw.githubusercontent.com/oncledave01/f5-azure-arm-templates-v2/main/examples/lab%20NG/configs/F5/runtime-init-conf-3nic-payg-gruyere.yaml",
         "sshKey": "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABgQC5TSdgJ1hPsy9pnxFkwWp4ZDSFE0CuzzfyLUCHBFv61GeMXzNDCixn9U4HGxyTMOMnJETxKt4NTElZ82XNXFroFWJp7enrAVyRkgCa4BPilvQ++cqkMjmujXRo89va+SnQpuzC3Eb4n7FTv9lbEjqTlO6H+mouovfSJ4UEAJkOjhbjLzFPbwJjwvoJ3BJxljJwyGfDuhycWCojN9zF5zv7Hhp3sWLtrc1NU1N3w+i+CYHYOi7mkZmQRhh7zE9uS23U/yLttkfEnZtsml/6k/SG/qGX8rqLnVtOjCkGrghKf0XAQ+fENwBho5U8wUdzZ2DIcPTBmXPjMZoLhm2J2qC/HEDQIHlAbaHqzc+0GkSFD2KyJOIOrjbVErkGO1+A3NZnN9/C3RlAnpM+a2HxmIxNZ+U+Yf2R4somQGdtpDxfFEyjkwlCD50RF4IOzKaWgzL9eU13/T117xZD1j2kIPBxRSug+ipKRjDJuGiLsoNlepZtIv1UEFABbMaUovj/9Z8= admin@MBP-Dave.rd-services.eu",
         "tagValues": {
             "application": "APP",
