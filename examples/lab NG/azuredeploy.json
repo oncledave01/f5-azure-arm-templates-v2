@@ -169,7 +169,7 @@
                         "value": 2
                     },
                     "numberPublicMgmtIpAddresses": {
-                        "value": "[if(parameters('F5'), if(parameters('Palo'), if(parameters('Forti'), 4, 3), if(parameters('Forti'), 3, 2)), if(parameters('Palo'), if(parameters('Forti'), 2, 1), if(parameters('Forti'), 1, 0)))]"
+                        "value": "[if(and(parameters('F5'),parameters('Palo'),parameters('Forti')),3,if(and(parameters('F5'),or(parameters('Palo'),parameters('Forti'))),2,if(and(parameters('Palo'),parameters('Forti')),2,1)))]"
                     },
                     "tagValues": {
                         "value": "[variables('tagValues')]"
@@ -480,6 +480,7 @@
         "networkTemplate",
         "dagTemplate"
       ],
+      "condition": "[parameters('F5')]",
       "properties": {
         "mode": "Incremental",
         "templateLink": {
