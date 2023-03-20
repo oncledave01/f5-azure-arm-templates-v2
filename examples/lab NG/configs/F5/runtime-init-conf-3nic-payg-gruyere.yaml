@@ -82,7 +82,7 @@ extension_services:
             class: System
             autoPhonehome: false
             hostname: '{{{HOST_NAME}}}.local'
-          quickstart:
+          azureuser123:
             class: User
             userType: regular
             partitionAccess:
@@ -159,7 +159,7 @@ extension_services:
             serviceMain:
               class: Service_HTTP
               virtualAddresses:
-                - 10.0.1.101
+                - 10.0.1.102
               snat: auto
               policyWAF:
                 use: WAFPolicy
@@ -176,7 +176,7 @@ extension_services:
             serviceMain:
               class: Service_HTTPS
               virtualAddresses:
-                - 10.0.1.101
+                - 10.0.1.102
               snat: auto
               policyWAF:
                 use: WAFPolicy
