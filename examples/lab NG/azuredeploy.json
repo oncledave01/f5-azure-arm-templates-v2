@@ -576,7 +576,7 @@
     },
         {
             "apiVersion": "2021-04-01",
-            "name": "networkIsolateTemplate",
+            "name": "networkIsolateTemplate2App",
             "dependsOn": [
               "app1Template",
               "app2Template"
@@ -610,7 +610,7 @@
         },
         {
             "apiVersion": "2021-04-01",
-            "name": "networkIsolateTemplate",
+            "name": "networkIsolateTemplate1App",
             "dependsOn": [
               "app1Template"
             ],
