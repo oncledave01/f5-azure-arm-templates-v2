@@ -578,9 +578,43 @@
             "apiVersion": "2021-04-01",
             "name": "networkIsolateTemplate",
             "dependsOn": [
-              "bigIpTemplate"
+              "app1Template",
+              "app2Template"
             ],
-            "condition": "[parameters('F5')]",
+            "condition": "[parameters('APP2')]",
+            "properties": {
+                "mode": "Incremental",
+                "parameters": {
+                    "GW_Internal": {
+                        "value": "[parameters('GW_Internal')]"
+                    },
+                    "numSubnets": {
+                        "value": 4
+                    },
+                    "tagValues": {
+                        "value": "[variables('tagValues')]"
+                    },
+                    "vnetAddressPrefix": {
+                        "value": "[variables('vnetAddressPrefix')]"
+                    },
+                    "vnetName": {
+                        "value": "[variables('vnetName')]"
+                    }
+                },
+                "templateLink": {
+                    "contentVersion": "[variables('contentVersion')]",
+                    "uri": "https://raw.githubusercontent.com/oncledave01/f5-azure-arm-templates-v2/main/examples/modules/network/network-ng-isolate.json"
+                }
+            },
+            "type": "Microsoft.Resources/deployments"
+        },
+        {
+            "apiVersion": "2021-04-01",
+            "name": "networkIsolateTemplate",
+            "dependsOn": [
+              "app1Template"
+            ],
+            "condition": "[not(parameters('APP2'))]",
             "properties": {
                 "mode": "Incremental",
                 "parameters": {
