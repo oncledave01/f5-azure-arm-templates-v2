@@ -1,0 +1,27 @@
+{
+    "$schema": "http://schema.management.azure.com/schemas/2015-01-01/deploymentParameters.json#",
+    "contentVersion": "1.4.0.0",
+    "parameters": {
+        "GW_Internal": {
+            "value": "Palo"
+        },
+        "numSubnets": {
+            "value": 4
+        },
+        "tagValues": {
+            "value": {
+                "application": "APP",
+                "cost": "COST",
+                "environment": "ENV",
+                "group": "GROUP",
+                "owner": "OWNER"
+            }
+        },
+        "vnetAddressPrefix": {
+            "value": "10.0"
+        },
+        "vnetName": {
+            "value": "virtualNetwork"
+        }
+    }
+}
