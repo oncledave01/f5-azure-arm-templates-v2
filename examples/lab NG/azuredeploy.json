@@ -19,7 +19,8 @@
             "allowedValues": [
                 "",
                 "karthequian/gruyere:latest",
-                "owasp/security-shepherd:latest"
+                "owasp/security-shepherd:latest",
+                "stamus/suricata"
             ],
             "defaultValue": "",
             "metadata": {
