@@ -709,7 +709,7 @@
         "PaloRuntimeInitPackageUrl": "https://raw.githubusercontent.com/oncledave01/f5-azure-arm-templates-v2/main/examples/lab%20NG/configs/Palo/init-package.txt",
         "FortiImage": "fortinet:fortinet_fortigate-vm_v5:fortinet_fg-vm_payg_20190624:latest",
         "FortiInstanceType": "Standard_F1s",
-        "bigIpImage": "f5-networks:f5-big-ip-best:f5-bigip-virtual-edition-25m-best-hourly:16.1.000000",
+        "bigIpImage": "f5-networks:f5-big-ip-best:f5-big-best-plus-hourly-25mbps:latest",
         "bigIpInstanceType": "Standard_DS3_v2",
         "bigIpRuntimeInitPackageUrl": "https://cdn.f5.com/product/cloudsolutions/f5-bigip-runtime-init/v1.3.2/dist/f5-bigip-runtime-init-1.3.2-1.gz.run",
         "bigIpRuntimeInitConfig": "https://raw.githubusercontent.com/oncledave01/f5-azure-arm-templates-v2/main/examples/lab%20NG/configs/F5/runtime-init-conf-3nic-payg-gruyere.yaml",
