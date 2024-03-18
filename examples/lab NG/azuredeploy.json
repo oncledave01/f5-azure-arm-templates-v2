@@ -486,7 +486,7 @@
         "mode": "Incremental",
         "templateLink": {
           "uri": "https://raw.githubusercontent.com/F5Networks/f5-azure-arm-templates-v2/main/examples/modules/bigip-standalone/bigip.json",
-          "contentVersion": "[variables('contentVersion')]"
+          "contentVersion": "3.0.0.0"
         },
         "parameters": {
           "adminUsername": {
