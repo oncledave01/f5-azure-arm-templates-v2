@@ -177,10 +177,6 @@
     "vnetName": "[concat(variables('uniqueString'), '-vnet')]",
     "vnetAddressPrefix": "10.0",
     "createAutoscaleGroup": false,
-    "externalLoadBalancerName": "None",
-    "internalLoadBalancerName": "None",
-    "internalLoadBalancerProbePort": "3456",
-    "loadBalancerRulePorts": [],
     "mgmtNsgRulesArray": [
       {
         "destinationPortRanges": [
