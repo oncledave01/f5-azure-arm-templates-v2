@@ -296,21 +296,6 @@
           "uniqueString": {
             "value": "[variables('uniqueString')]"
           },
-          "externalLoadBalancerName": {
-            "value": "[variables('externalLoadBalancerName')]"
-          },
-          "internalLoadBalancerName": {
-            "value": "[variables('internalLoadBalancerName')]"
-          },
-          "internalLoadBalancerProbePort": {
-            "value": "[variables('internalLoadBalancerProbePort')]"
-          },
-          "internalSubnetId": {
-            "value": ""
-          },
-          "loadBalancerRulePorts": {
-            "value": "[variables('loadBalancerRulePorts')]"
-          },
           "nsg0": {
             "value": "[variables('nsg0')]"
           },
